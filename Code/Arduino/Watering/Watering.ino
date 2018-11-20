@@ -6,10 +6,10 @@
 // https://www.quora.com/What-is-the-way-to-connect-multiple-sensor-with-arduino-board
 
 
-int numberOfSensors = 4; //Analogue pin!
+int numberOfSensors = 4; //Analogue pins!
 int oldVal = 0; 
-
 String outVal = "";
+
 
 void setup()
 {
@@ -18,7 +18,7 @@ void setup()
 
 void loop()
 {
-    if (millis() % 1000 <= 100){ // 1000000 <= 100    =16mins/1000 seconds
+    if (millis() % 10000 <= 100){ // 1000000 <= 100    =16mins/1000 seconds, resets after 50d
       int value = 0;
       for (int i = 0; i < numberOfSensors; i++){
         //Loop over all sensors
