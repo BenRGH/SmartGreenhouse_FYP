@@ -4,21 +4,28 @@
 # works with the data to display it as an http server.
 
 import serial
+import time
 
 
 def readfromserial(port):
     comPort = ''
+    bytesToRead = 1
 
     if port == 0:
         comPort = '/dev/ttyUSB0'
+        bytesToRead = 10
     elif port == 1:
         comPort = '/dev/ttyUSB1'
+        bytesToRead = 100
 
     with serial.Serial(comPort, 9600, timeout=1) as ser:
-        s = ser.read(100)  # Read the first 100 bytes
+        s = ser.read(bytesToRead)  # Read the first 100 bytes
 
-    return (s)
+    return s.decode("utf-8")
 
 
 while True:
-    readfromserial(1)
+    print(readfromserial(1))
+    print("soil moisture: " + readfromserial(0))
+    time.sleep(3)
+

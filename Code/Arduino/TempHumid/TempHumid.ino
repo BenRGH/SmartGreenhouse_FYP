@@ -18,16 +18,15 @@ void setup(){
 void loop()
 {
   int chk = DHT.read11(DHT11_PIN);
-  Serial.print("Temp:  ");
-  Serial.println(DHT.temperature);
-  Serial.print("Humid: ");
-  Serial.println(DHT.humidity);
 
-  L1Read = (double(analogRead(L1Pin))/1023)*100; 
-  L2Read = (double(analogRead(L2Pin))/1023)*100; 
-  Serial.println("L1:    " + L1Read + "%");     // the raw analog reading
-  Serial.println("L2:    " + L2Read + "%");
-  
+  // raw analogue readings saved to array
+  Serial.println("***"); // this makes error checking easier
+  Serial.println(DHT.temperature);
+  Serial.println(DHT.humidity);
+  Serial.println((double(analogRead(L1Pin))/1023)*100); // percentages
+  Serial.println((double(analogRead(L2Pin))/1023)*100); 
+  Serial.println("");
+
   delay(2000);
 }
 

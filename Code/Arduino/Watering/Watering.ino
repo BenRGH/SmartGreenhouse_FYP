@@ -18,7 +18,7 @@ void setup()
 
 void loop()
 {
-    if (millis() % 10000 <= 100){ // 1000000 <= 100    =16mins/1000 seconds, resets after 50d
+    if (millis() % 1000000 <= 100){ // 1000000 <= 100   =16mins/1000 seconds, resets after 50d
       int value = 0;
       for (int i = 0; i < numberOfSensors; i++){
         //Loop over all sensors
@@ -35,4 +35,7 @@ void loop()
         oldVal = value;
       }
     }
+
+    Serial.print(outVal);
+    delay(2000);
 }
