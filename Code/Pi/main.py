@@ -25,8 +25,15 @@ def readfromserial(port):
 
     return s.decode("utf-8")
 
-@app.route('/site/')
-def site():
-    while True:
-        time.sleep(4)
-        return readfromserial(1) + readfromserial(0)
+@app.route('/')
+def homepage():
+    time.sleep(4)
+    return readfromserial(1) + readfromserial(0)
+
+
+if __name__ == '__main__':
+    app.run(use_reloader=True)
+
+while False:
+    time.sleep(4)
+    print(readfromserial(1) + readfromserial(0))
