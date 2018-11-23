@@ -41,8 +41,8 @@ def formattedinput():
 
 
 @app.route('/')
-def homepage():
-    return render_template("homepage.html")
+def home():
+    return render_template("home.html")
 
 
 if __name__ == '__main__':
