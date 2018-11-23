@@ -1,6 +1,6 @@
 # Ben Rose 2018
 # This is the main python program running on the raspberry pi,
-# It reads from the arduino's via serial monitor (USB) and
+# It reads from the arduinos via serial monitor (USB) and
 # works with the data to display it as an http server.
 
 import serial
@@ -8,6 +8,7 @@ import time
 from flask import Flask
 
 app = Flask(__name__)
+
 
 def readfromserial(port):
     comPort = ''
@@ -22,13 +23,26 @@ def readfromserial(port):
 
     with serial.Serial(comPort, 9600, timeout=1) as ser:
         s = ser.read(bytesToRead)  # Read the first 100 bytes
+        # look for *** here
 
     return s.decode("utf-8")
 
+
+def formattedinput():
+    # figure out how to get avg and memory here
+
+    listedData = (readfromserial(1) + " " + readfromserial(0)).split(" ")
+    # listedData = [***, temp(c), humidity(relative), L1%, L2%, soil moisture (avg of reading out of 1023*4]
+    webExport = "\ntemp: " + listedData[1] + "*c\nhumidity: " + listedData[2] + "\n L1: " + listedData[3] + "%\nL2: " + listedData[4] + "%\nSoil: " + listedData[5]
+
+    time.sleep(4)
+    return webExport
+
+
 @app.route('/')
 def homepage():
-    time.sleep(4)
-    return readfromserial(1) + readfromserial(0)
+    while True:
+        return formattedinput()
 
 
 if __name__ == '__main__':
