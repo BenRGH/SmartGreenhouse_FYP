@@ -5,7 +5,7 @@
 
 import serial
 import time
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -29,11 +29,12 @@ def readfromserial(port):
 
 
 def formattedinput():
+    listedData = {"","","","","",""}
     # figure out how to get avg and memory here
 
-    listedData = (readfromserial(1) + " " + readfromserial(0)).split(" ")
+    listedData = (readfromserial(1) + " " + readfromserial(0)).split()
     # listedData = [***, temp(c), humidity(relative), L1%, L2%, soil moisture (avg of reading out of 1023*4]
-    webExport = "\ntemp: " + listedData[1] + "*c\nhumidity: " + listedData[2] + "\n L1: " + listedData[3] + "%\nL2: " + listedData[4] + "%\nSoil: " + listedData[5]
+    webExport = "<br>temp: " + listedData[1] + "*c<br>humidity: " + listedData[2] + "<br>L1: " + listedData[3] + "%<br>L2: " + listedData[4] + "%<br>Soil: " + listedData[5]
 
     time.sleep(4)
     return webExport
@@ -41,8 +42,7 @@ def formattedinput():
 
 @app.route('/')
 def homepage():
-    while True:
-        return formattedinput()
+    return render_template("homepage.html")
 
 
 if __name__ == '__main__':
