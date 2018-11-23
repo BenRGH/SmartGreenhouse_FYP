@@ -5,7 +5,9 @@
 
 import serial
 import time
+from flask import Flask
 
+app = Flask(_name_)
 
 def readfromserial(port):
     comPort = ''
@@ -23,9 +25,8 @@ def readfromserial(port):
 
     return s.decode("utf-8")
 
-
-while True:
-    print(readfromserial(1))
-    print("soil moisture: " + readfromserial(0))
-    time.sleep(3)
-
+@app.route('/site/')
+def site():
+    while True:
+        time.sleep(4)
+        return readfromserial(1) + readfromserial(0)
