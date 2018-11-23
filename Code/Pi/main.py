@@ -7,7 +7,7 @@ import serial
 import time
 from flask import Flask
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 def readfromserial(port):
     comPort = ''
