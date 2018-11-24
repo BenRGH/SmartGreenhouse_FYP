@@ -5,7 +5,7 @@
 
 import serial
 import time
-from flask import Flask, render_template
+import sys
 
 
 def readfromserial(port):
@@ -39,6 +39,17 @@ def formattedinput():
     return export
 
 
-while True:
-    time.sleep(4)
-    print(readfromserial(1) + readfromserial(0))
+def main():
+    for i in range(10):
+        print("testing testing 123")
+        
+    return "floopa"
+
+    # while True:
+    #     time.sleep(4)
+    #     print(readfromserial(1) + readfromserial(0))
+
+print("Functionless print")
+
+if __name__== "__main__":
+    main()
