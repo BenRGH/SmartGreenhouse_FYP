@@ -2,9 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Main Page', pyOut: getPythonData() });
+router.get('/', async function(req, res, next) {
+  res.render('index', { title: 'Main Page', pyOut: await getPythonData() });
 });
+
+router.get('/data', async function(req,res) {
+    res.send(await getPythonData());
+})
 
 let {PythonShell} = require('python-shell')
 let options = {
@@ -13,12 +17,15 @@ let options = {
     //args: ['value1', 'value2', 'value3']
 };
 function getPythonData(){
-    return PythonShell.run('./main.py', options, function (err, results) {
-        if (err) throw err;
-        // results is an array consisting of messages collected during execution
-        console.log(results)
-        return results;
-    });
+    return new Promise(resolve => {
+        PythonShell.run('./main.py', options, function (err, results) {
+            if (err) throw err;
+            // results is an array consisting of messages collected during execution
+            console.log(results);
+            resolve(results);
+        })
+    })
+
 }
 
 

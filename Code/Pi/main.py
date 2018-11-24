@@ -40,16 +40,14 @@ def formattedinput():
 
 
 def main():
-    for i in range(10):
-        print("testing testing 123")
-        
-    return "floopa"
+    print(readfromserial(1) + readfromserial(0))
+
+    return "this shouldn't appear anywhere"
 
     # while True:
     #     time.sleep(4)
     #     print(readfromserial(1) + readfromserial(0))
 
-print("Functionless print")
 
 if __name__== "__main__":
     main()
