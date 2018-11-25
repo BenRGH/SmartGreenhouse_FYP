@@ -30,8 +30,8 @@ void readSensors(){
       }
       value = value/numberOfSensors; //avg
       
-      if(((oldVal>=value) && ((oldVal - value) > 10)) || ((oldVal<value) && ((value - oldVal) > 10))){
-        // If the current val is at least 10 higher or lower than before then output
+      if(((oldVal>=value) && ((oldVal - value) > 5)) || ((oldVal<value) && ((value - oldVal) > 5))){
+        // If the current val is at least 5 higher or lower than before then output
         
         outVal = value + "\n";
         oldVal = value;
