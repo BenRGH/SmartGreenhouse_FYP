@@ -8,21 +8,24 @@
 
 int numberOfSensors = 4; //Analogue pins!
 int oldVal = 0; 
-String outVal = "";
+String outVal = "INITIAL VALUE";
 
 
 void setup()
 {
   Serial.begin(9600);
+  while (! Serial); // Wait untilSerial is ready
 }
 
-void loop()
-{
-    if (millis() % 1000000 <= 100){ // 1000000 <= 100   =16mins/1000 seconds, resets after 50d
+void readSensors(){
+  if (millis() % 1000000 <= 100){ // 1000000 <= 100   =16mins/1000 seconds, resets after 50d
+      // reading too often electrolyses the sensors!
+      
       int value = 0;
       for (int i = 0; i < numberOfSensors; i++){
         //Loop over all sensors
         int sensorVal = analogRead(i); // get value, lower is wetter, 1023 max
+        delay(1000); // required for a good reading
         value = value + sensorVal; 
       }
       value = value/numberOfSensors; //avg
@@ -30,12 +33,21 @@ void loop()
       if(((oldVal>=value) && ((oldVal - value) > 10)) || ((oldVal<value) && ((value - oldVal) > 10))){
         // If the current val is at least 10 higher or lower than before then output
         
-        outVal = String("\n") + value;
-        Serial.print(outVal);
+        outVal = value + "\n";
         oldVal = value;
       }
     }
+}
 
-    Serial.print(outVal);
-    delay(2000);
+void loop()
+{
+    if (Serial.available())
+  {
+    char ch = Serial.read();
+    if (ch == '?') // Only reads sensors when a ? has been received
+    {
+      readSensors();
+      Serial.println(outVal);
+    }
+  }
 }

@@ -8,25 +8,40 @@ dht DHT;
 #define DHT11_PIN 2
 int L1Pin = 1;     // the cell and 1K pulldown are connected to a0
 int L2Pin = 2;
-String L1Read;     // the analog reading from the analog resistor divider
-String L2Read;
+double temp, humidity, L1, L2;
 
 void setup(){
   Serial.begin(9600);
+  while (! Serial); // Wait untilSerial is ready
+}
+
+void readSensors(){
+  int chk = DHT.read11(DHT11_PIN);
+
+  // analogue readings saved to vars
+  temp = DHT.temperature;
+  humidity = DHT.humidity;
+  L1 = (double(analogRead(L1Pin))/1023)*100; // percentages
+  L2 = (double(analogRead(L2Pin))/1023)*100; 
+
+  delay(2000); // necessary for good reading
 }
 
 void loop()
 {
-  int chk = DHT.read11(DHT11_PIN);
+  if (Serial.available())
+  {
+    char ch = Serial.read();
+    if (ch == '?') // Only reads sensors when a ? has been received
+    {
+      readSensors();
+      Serial.println(temp);
+      Serial.println(humidity);
+      Serial.println(L1);
+      Serial.println(L2);
+    }
+  }
 
-  // raw analogue readings saved to array
-  Serial.println("***"); // this makes error checking easier
-  Serial.println(DHT.temperature);
-  Serial.println(DHT.humidity);
-  Serial.println((double(analogRead(L1Pin))/1023)*100); // percentages
-  Serial.println((double(analogRead(L2Pin))/1023)*100); 
-  Serial.println("");
-
-  delay(2000);
+  
 }
 

@@ -18,7 +18,8 @@ let options = {
 };
 function getPythonData(){
     return new Promise(resolve => {
-        PythonShell.run('./main.py', options, function (err, results) {
+        PythonShell.run('main.py', options, function (err, results) {
+            // Change this path!!!
             if (err) throw err;
             // results is an array consisting of messages collected during execution
             console.log(results);
