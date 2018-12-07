@@ -8,7 +8,7 @@
 
 int numberOfSensors = 4; //Analogue pins!
 int oldVal = 0; 
-String outVal = "INITIAL VALUE";
+int outVal = 1;
 
 
 void setup()
@@ -19,7 +19,7 @@ void setup()
 
 void readSensors(){
   if (millis() % 1000000 <= 100){ // 1000000 <= 100   =16mins/1000 seconds, resets after 50d
-      // reading too often electrolyses the sensors!
+      // reading too often electrolyses the sensors!!!!!!!!
       
       int value = 0;
       for (int i = 0; i < numberOfSensors; i++){
@@ -30,12 +30,12 @@ void readSensors(){
       }
       value = value/numberOfSensors; //avg
       
-      if(((oldVal>=value) && ((oldVal - value) > 5)) || ((oldVal<value) && ((value - oldVal) > 5))){
+      //if(((oldVal>=value) && ((oldVal - value) > 5)) || ((oldVal<value) && ((value - oldVal) > 5))){
         // If the current val is at least 5 higher or lower than before then output
         
-        outVal = value + "\n";
-        oldVal = value;
-      }
+      outVal = value;
+      oldVal = value;
+      //}
     }
 }
 

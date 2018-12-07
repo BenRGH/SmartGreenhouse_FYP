@@ -6,9 +6,11 @@
 import serial
 import time
 import sys
+import psycopg2
+import datetime
 
 
-def readFromSerial(port):
+def readFromSerial(port, valType='s'):
     # This opens up the local serial monitor ports and communicates with the arduinos,
     # sending a request for sensor data '?' and reading it.
 
@@ -23,7 +25,7 @@ def readFromSerial(port):
         bytesToRead = 50
 
     with serial.Serial(comPort, 9600, timeout=1) as ser:
-        ser.write(b'?')
+        ser.write(valType.encode('utf-8'))
         time.sleep(3)
         s = ser.read(bytesToRead)  # Read the first 100 bytes
 
@@ -32,35 +34,74 @@ def readFromSerial(port):
 
 def formattedRead():
     # This takes the data read by readFromSerial and formats it for export to the web.
+    export = (readFromSerial(0) + "\n" + readFromSerial(1)).split("\n")
 
-    preExport = readFromSerial(0) + "\n" + readFromSerial(1)
-    preExport = preExport.split("\n")
-
-    # export is currently [soil, temp, humid, L1, L2]
-    preExport[0] = "Soil Moisture: " + str(preExport[0]) + "/1023 <br>"
-    preExport[1] = "Temperature  : " + str(preExport[1]) + "*C <br>"
-    preExport[2] = "Humidity     : " + str(preExport[2]) + " RH <br>"
-    preExport[3] = "Light 1      : " + str(preExport[3]) + "% <br>"
-    preExport[4] = "Light 2      : " + str(preExport[4]) + "% <br>"
-
-    export = ""
-    for i in preExport:
-        export += i
+    # Python dict of the data
+    export = {
+        "soil": export[0],
+        "temp": export[1],
+        "humid": export[2],
+        "L1": export[3],
+        "L2": export[4]
+    }
 
     return export
 
 
+# Used to get all values of a table in DB
+def getAllDB(table):
+    # Database connection goodness
+    conn = psycopg2.connect('dbname=test user=pi') # !rename to actual!
+    cur = conn.cursor()
+
+    query = "SELECT * FROM " + table
+    cur.execute(query)  # run query
+    tableData = cur.fetchall()
+
+    # Close up
+    cur.close()
+    conn.close()
+
+    return tableData
+
+
+# Used by the UpdateDB function to add values to a table
+def addToDB(cTime, soil, temp, humid, L1, L2):
+    # Database connection goodness
+    conn = psycopg2.connect('dbname=test user=pi')  # !rename to actual!
+    cur = conn.cursor()
+
+    query = "INSERT INTO sensors (cTime, soil, temp, humid, l1, l2) VALUES  (%s, %s, %s, %s, %s, %s)"
+    cur.execute(query, (cTime, soil, temp, humid, L1, L2))
+
+    # Commit changes to db and close connection
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 def main():
-    try:
-        print(formattedRead())
-    except:
-        print("Display older data here")
+    while 1:
+        # Check db
+        print(getAllDB("sensors"))
+
+        sensorData = formattedRead()  # A dictionary of the latest sensor data
+
+        try:
+            addToDB(
+                str(datetime.datetime.now()),
+                sensorData["soil"],
+                sensorData["temp"],
+                sensorData["humid"],
+                sensorData["L1"],
+                sensorData["L2"]
+            )
+        except():
+            print("it couldn't get a sensor val")
+
+        time.sleep(10)
 
     return "this shouldn't appear anywhere"
-
-    # while True:
-    #     time.sleep(4)
-    #     print(readfromserial(1) + readfromserial(0))
 
 
 if __name__== "__main__":

@@ -1,5 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+// Postgresness
+const { Pool, Client } = require('pg')
+const pool = new Pool()
+
+const client = new Client()
+await client.connect()
+
+const res = await client.query('SELECT NOW()')
+await client.end()
+
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
