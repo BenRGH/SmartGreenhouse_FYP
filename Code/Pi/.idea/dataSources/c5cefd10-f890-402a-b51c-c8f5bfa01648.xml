@@ -74,8 +74,8 @@
       <Comment>standard public schema</Comment>
       <StateNumber>347</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2018-12-08.19:26:23.012</IntrospectionTimestamp>
-      <IntrospectionStateNumber>960</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-12-09.17:09:22.258</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1951</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -138,43 +138,60 @@
     <table id="20" parent="12" name="sensors">
       <ObjectId>16402</ObjectId>
       <Owner>pi</Owner>
-      <StateNumber>960</StateNumber>
+      <StateNumber>1567</StateNumber>
     </table>
-    <column id="21" parent="20" name="soil">
+    <table id="21" parent="12" name="weather">
+      <ObjectId>16454</ObjectId>
+      <Owner>pi</Owner>
+      <StateNumber>1907</StateNumber>
+    </table>
+    <column id="22" parent="20" name="soil">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>565</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>integer|0s</DataType>
+      <StateNumber>1563</StateNumber>
+      <TypeId>23</TypeId>
     </column>
-    <column id="22" parent="20" name="temp">
+    <column id="23" parent="20" name="temp">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>565</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1564</StateNumber>
+      <TypeId>701</TypeId>
     </column>
-    <column id="23" parent="20" name="humid">
+    <column id="24" parent="20" name="humid">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>565</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1565</StateNumber>
+      <TypeId>701</TypeId>
     </column>
-    <column id="24" parent="20" name="l1">
+    <column id="25" parent="20" name="l1">
       <Position>5</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>565</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1566</StateNumber>
+      <TypeId>701</TypeId>
     </column>
-    <column id="25" parent="20" name="l2">
+    <column id="26" parent="20" name="l2">
       <Position>6</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>565</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1567</StateNumber>
+      <TypeId>701</TypeId>
     </column>
-    <column id="26" parent="20" name="dtime">
+    <column id="27" parent="20" name="dtime">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <StateNumber>960</StateNumber>
       <TypeId>1114</TypeId>
+    </column>
+    <column id="28" parent="21" name="dtime">
+      <Position>1</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>1907</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="29" parent="21" name="temp">
+      <Position>2</Position>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1907</StateNumber>
+      <TypeId>701</TypeId>
     </column>
   </database-model>
 </dataSource>

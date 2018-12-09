@@ -8,16 +8,23 @@
 
 int numberOfSensors = 4; //Analogue pins!
 int oldVal = 0; 
-int outVal = 1;
+int outVal = 511;
+unsigned long startMillis;
+unsigned long currMillis;
+const unsigned long timeDelay = 900000;  // = 15 mins
 
 
 void setup()
 {
   Serial.begin(9600);
+  startMillis = millis();  // start time
+  
 }
 
 void readSensors(){
-  if (millis() % 1000000 <= 100){ // 1000000 <= 100   =16mins/1000 seconds, resets after 50d
+  currMillis = millis();  // get current time
+  
+  if (currMillis - startMillis >= timeDelay){ // =15mins, resets after 50d
       // reading too often electrolyses the sensors!!!!!!!!
       
       int value = 0;
@@ -40,7 +47,8 @@ void readSensors(){
 
 void loop()
 {
-    if (Serial.available())
+  readSensors(); //have to read often otherwise nothing will change
+  if (Serial.available())
   {
     int query = Serial.parseInt();
     if (query == 0) // output sensor data
@@ -48,6 +56,6 @@ void loop()
       Serial.println(outVal);
     }
     
-    readSensors(); //have to read often otherwise nothing will change
+    
   }
 }

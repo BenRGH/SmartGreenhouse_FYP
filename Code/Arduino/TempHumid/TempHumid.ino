@@ -31,9 +31,10 @@ void loop()
 {
   if (Serial.available())
   {
-    int query = Serial.read();
-    if (query != NULL){// Only reads sensors when a query has been received
+    int query = Serial.parseInt();
+    if (query == 0){// Only reads sensors when a query has been received
       readSensors();
+      Serial.print('0'); //used as buffer in case read err
       Serial.print(temp);
       Serial.print('/');
       Serial.print(humidity);

@@ -7,7 +7,12 @@ a {
   color: #00B7FF;
 }
 
-#stats{
-  color: darkblue;
-  background-color: beige;
+#statsContainer{
+  max-width: 1000px;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+#tempStats{
+
 }
