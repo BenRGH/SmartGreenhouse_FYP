@@ -3,42 +3,34 @@ const router = express.Router();
 
 // Postgresness
 const { Pool, Client } = require('pg')
-const pool = new Pool()
 
-const client = new Client()
-await client.connect()
-
-const res = await client.query('SELECT NOW()')
-await client.end()
-
-
-/* GET home page. */
+// GET home page
 router.get('/', async function(req, res, next) {
   res.render('index', { title: 'Main Page' });
 });
 
+// GET sensor data for d3
 router.get('/data', async function(req,res) {
-    res.send(await getPythonData());
-})
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
 
-let {PythonShell} = require('python-shell')
-let options = {
-    mode: 'text',
-    pythonOptions: ['-u'], // get print results in real-time
-    //args: ['value1', 'value2', 'value3']
-};
-function getPythonData(){
-    return new Promise(resolve => {
-        PythonShell.run('main.py', options, function (err, results) {
-            // Change this path!!!
-            if (err) throw err;
-            // results is an array consisting of messages collected during execution
-            console.log(results);
-            resolve(results);
-        })
+    client.query('SELECT * FROM sensors').then(resp => {
+        if (resp.rows.length < 1){
+            client.end();
+            return res.json({ success: false, msg: 'Database read error' });
+        }
+
+        client.end();
+        return res.json({ success: true, data: resp.rows });
     })
 
-}
+});
+
 
 
 module.exports = router;

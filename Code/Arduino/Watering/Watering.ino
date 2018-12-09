@@ -14,7 +14,6 @@ int outVal = 1;
 void setup()
 {
   Serial.begin(9600);
-  while (! Serial); // Wait untilSerial is ready
 }
 
 void readSensors(){
@@ -43,11 +42,12 @@ void loop()
 {
     if (Serial.available())
   {
-    char ch = Serial.read();
-    if (ch == '?') // Only reads sensors when a ? has been received
+    int query = Serial.parseInt();
+    if (query == 0) // output sensor data
     {
-      readSensors();
       Serial.println(outVal);
     }
+    
+    readSensors(); //have to read often otherwise nothing will change
   }
 }

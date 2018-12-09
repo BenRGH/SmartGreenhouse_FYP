@@ -31,17 +31,17 @@ void loop()
 {
   if (Serial.available())
   {
-    char ch = Serial.read();
-    if (ch == '?') // Only reads sensors when a ? has been received
-    {
+    int query = Serial.read();
+    if (query != NULL){// Only reads sensors when a query has been received
       readSensors();
-      Serial.println(temp);
-      Serial.println(humidity);
-      Serial.println(L1);
-      Serial.println(L2);
+      Serial.print(temp);
+      Serial.print('/');
+      Serial.print(humidity);
+      Serial.print('/');
+      Serial.print(L1);
+      Serial.print('/');
+      Serial.print(L2);
     }
   }
-
-  
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="postgres@192.168.0.58">
+<dataSource name="test@192.168.0.58">
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.14">
     <root id="1">
       <ServerVersion>9.6.10</ServerVersion>
@@ -9,14 +9,14 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>548</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>501</IntrospectionStateNumber>
-      <Current>1</Current>
-      <Visible>1</Visible>
     </database>
     <database id="3" parent="1" name="test">
       <ObjectId>16392</ObjectId>
       <StateNumber>556</StateNumber>
       <Owner>postgres</Owner>
+      <IntrospectionStateNumber>501</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
     </database>
     <role id="4" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
@@ -42,43 +42,44 @@
       <ConnectionLimit>-1</ConnectionLimit>
       <BypassRls>1</BypassRls>
     </role>
-    <schema id="7" parent="2" name="information_schema">
+    <schema id="7" parent="3" name="information_schema">
       <ObjectId>12119</ObjectId>
       <StateNumber>349</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="8" parent="2" name="pg_catalog">
+    <schema id="8" parent="3" name="pg_catalog">
       <ObjectId>11</ObjectId>
       <Comment>system catalog schema</Comment>
       <StateNumber>346</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="9" parent="2" name="pg_temp_1">
+    <schema id="9" parent="3" name="pg_temp_1">
       <ObjectId>11848</ObjectId>
       <StateNumber>103</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="10" parent="2" name="pg_toast">
+    <schema id="10" parent="3" name="pg_toast">
       <ObjectId>99</ObjectId>
       <Comment>reserved schema for TOAST tables</Comment>
       <StateNumber>1</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="11" parent="2" name="pg_toast_temp_1">
+    <schema id="11" parent="3" name="pg_toast_temp_1">
       <ObjectId>11849</ObjectId>
       <StateNumber>103</StateNumber>
       <Owner>postgres</Owner>
     </schema>
-    <schema id="12" parent="2" name="public">
+    <schema id="12" parent="3" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <StateNumber>347</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2018-12-06.13:36:00.922</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-12-08.19:26:23.012</IntrospectionTimestamp>
+      <IntrospectionStateNumber>960</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <access-method id="13" parent="2" name="btree">
+    <access-method id="13" parent="3" name="btree">
       <ObjectId>403</ObjectId>
       <Comment>b-tree index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -86,7 +87,7 @@
       <HandlerId>330</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="14" parent="2" name="hash">
+    <access-method id="14" parent="3" name="hash">
       <ObjectId>405</ObjectId>
       <Comment>hash index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -94,7 +95,7 @@
       <HandlerId>331</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="15" parent="2" name="gist">
+    <access-method id="15" parent="3" name="gist">
       <ObjectId>783</ObjectId>
       <Comment>GiST index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -102,7 +103,7 @@
       <HandlerId>332</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="16" parent="2" name="gin">
+    <access-method id="16" parent="3" name="gin">
       <ObjectId>2742</ObjectId>
       <Comment>GIN index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -110,7 +111,7 @@
       <HandlerId>333</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="17" parent="2" name="spgist">
+    <access-method id="17" parent="3" name="spgist">
       <ObjectId>4000</ObjectId>
       <Comment>SP-GiST index access method</Comment>
       <StateNumber>1</StateNumber>
@@ -118,7 +119,7 @@
       <HandlerId>334</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="18" parent="2" name="brin">
+    <access-method id="18" parent="3" name="brin">
       <ObjectId>3580</ObjectId>
       <Comment>block range index (BRIN) access method</Comment>
       <StateNumber>1</StateNumber>
@@ -126,7 +127,7 @@
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <extension id="19" parent="2" name="plpgsql">
+    <extension id="19" parent="3" name="plpgsql">
       <ObjectId>12393</ObjectId>
       <Comment>PL/pgSQL procedural language</Comment>
       <StateNumber>501</StateNumber>
@@ -134,5 +135,46 @@
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
+    <table id="20" parent="12" name="sensors">
+      <ObjectId>16402</ObjectId>
+      <Owner>pi</Owner>
+      <StateNumber>960</StateNumber>
+    </table>
+    <column id="21" parent="20" name="soil">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>565</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="22" parent="20" name="temp">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>565</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="23" parent="20" name="humid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>565</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="24" parent="20" name="l1">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>565</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="25" parent="20" name="l2">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>565</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="26" parent="20" name="dtime">
+      <Position>8</Position>
+      <DataType>timestamp|0s</DataType>
+      <StateNumber>960</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
   </database-model>
 </dataSource>
