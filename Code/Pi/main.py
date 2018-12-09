@@ -38,7 +38,8 @@ def formattedRead():
         tempIn = readFromSerial(1).split('/')
         print(tempIn)
 
-        soilVal = readFromSerial(0)
+        soilVal = readFromSerial(0).split()[0]
+        print(soilVal)
         if soilVal == '':
             soilVal = 511
 
@@ -53,6 +54,9 @@ def formattedRead():
     except Exception:
         export = {}
         pass
+
+
+    print(export)
 
     return export
 
@@ -75,13 +79,13 @@ def getAllDB(table):
 
 
 # Used by the UpdateDB function to add values to a table
-def addToDB(dTime, soil, temp, humid, L1, L2):
+def addToDB(dtime, soil, temp, humid, L1, L2):
     # Database connection goodness
     conn = psycopg2.connect('dbname=test user=pi')
     cur = conn.cursor()
 
-    query = "INSERT INTO sensors (dTime, soil, temp, humid, l1, l2) VALUES  (%s, %s, %s, %s, %s, %s)"
-    cur.execute(query, (dTime, soil, temp, humid, L1, L2))
+    query = "INSERT INTO sensors (dtime, soil, temp, humid, l1, l2) VALUES  (%s, %s, %s, %s, %s, %s)"
+    cur.execute(query, (dtime, soil, temp, humid, L1, L2))
 
     # Commit changes to db and close connection
     conn.commit()
@@ -115,16 +119,19 @@ def main():
         try:
             sensorData = formattedRead()  # A dictionary of the latest sensor data
 
+            print(sensorData)
+
             addToDB(
                 datetime.datetime.now(),
-                sensorData["soil"],
-                sensorData["temp"],
-                sensorData["humid"],
-                sensorData["L1"],
-                sensorData["L2"]
+                sensorData['soil'],
+                sensorData['temp'],
+                sensorData['humid'],
+                sensorData['L1'],
+                sensorData['L2']
             )
 
-            addWeather()  # Add current temp to db
+            if datetime.datetime.now().minute % 2 == 0:
+                addWeather()  # Add current temp to db
 
         except Exception:
             print("it couldn't get a sensor val")
@@ -134,13 +141,10 @@ def main():
 
     return "this shouldn't appear anywhere"
 
-
-# Daemonizing
-# daemon = Daemonize(app="sensorscript", pid=pid, action=main)
-# daemon.start()
-
+# to daemonize:
+# nohup python main.py &
 # to check if daemon is running:
-# ps ax | grep sensorscript
+# ps ax | grep main.py
 # to stop daemon:
 # sudo kill -9 process_pid
 
