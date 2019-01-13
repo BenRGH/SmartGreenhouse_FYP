@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/javascripts/dbToWeb.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>This is the <%= title %></p>
-    <p>Sensor data should be here.</p>
+    <div class="contextContainer">
+      <p>Database records for the smart greenhouse sensors and weather data. Use the query selection
+      tool below to refine the data shown. Live statistics can be found at the bottom of this
+      page.</p><br>
+      <div id="dateRangeSelector">
+        <h2>Query selection</h2>
+        <label for="startDate">Start Date Range:</label>
+        <input type="date" id="startDate" name="startDateRange" value="2019-01-01">
+        <label for="endDate">End Date Range:</label>
+        <input type="date" id="endDate" name="endDateRange" value="2019-01-02">
+        <button type="button" id="dateRangeBtn">Go</button>
+      </div>
+      <div id="manualAutoVals">
+        <h2>Automation Settings</h2>
+        <p>Settings for the manual configuration of watering will be here</p>
+        <p>Settings for the manual configuration of dehumidifying will be here</p>
+        <p>Settings for the manual configuration of lighting will be here</p>
+      </div>
+    </div>
     <div id="statsContainer">
       <canvas id="tempStats"></canvas>
       <canvas id="humidStats"></canvas>
@@ -19,6 +37,9 @@
       <canvas id="soilStats"></canvas>
       <canvas id="lightStats"></canvas>
     </div>
+
+    <p id="loading">Loading Database...</p>
+    <div id="live">live data should be here</div>
 
   </body>
 </html>

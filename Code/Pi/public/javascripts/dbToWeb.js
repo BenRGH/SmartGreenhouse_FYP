@@ -1,15 +1,18 @@
 // Ben Rose 2018
 
-async function run(){
+
+
+async function startGraphs(startDate, endDate){
     try {
         const sdb = await axios('/sdata');  // get sensor data
+        const sensorDB = sdb.data.data;
 
         // ------------------- TEMPERATURE GRAPH -------------------------------------------
 
         let dateTemps = [];
-        for (let i in sdb.data.data){
+        for (let i in sensorDB){
             // stick the time and temps into a fancy array the chart can use
-            dateTemps.push({x: sdb.data.data[i].dtime, y: sdb.data.data[i].temp});
+            dateTemps.push({x: sensorDB[i].dtime, y: sensorDB[i].temp});
         }
 
         const wdb = await axios('/wdata');  // get weather data
@@ -80,9 +83,9 @@ async function run(){
         // ------------------- HUMIDITY GRAPH ---------------------------------------------
 
         let dateHumid = [];
-        for (let i in sdb.data.data){
+        for (let i in sensorDB){
             // more of the same but for humidity
-            dateHumid.push({x: sdb.data.data[i].dtime, y: sdb.data.data[i].humid})
+            dateHumid.push({x: sensorDB[i].dtime, y: sensorDB[i].humid})
         }
 
         let humidctx = document.getElementById("humidStats").getContext('2d');
@@ -138,9 +141,9 @@ async function run(){
         // ------------------- SOIL MOISTURE GRAPH -------------------------------------------
 
         let dateSoil = [];
-        for (let i in sdb.data.data){
+        for (let i in sensorDB){
             // more of the same but for soil
-            dateSoil.push({x: sdb.data.data[i].dtime, y: (sdb.data.data[i].soil/1023)*100 })
+            dateSoil.push({x: sensorDB[i].dtime, y: (sensorDB[i].soil/1023)*100 })
         }
 
         console.log(dateSoil); // testing
@@ -199,10 +202,10 @@ async function run(){
 
         let dateLight1 = [];
         let dateLight2 =[];
-        for (let i in sdb.data.data){
+        for (let i in sensorDB){
             // more of the same but for light
-            dateLight1.push({x: sdb.data.data[i].dtime, y: sdb.data.data[i].l1 });
-            dateLight2.push({x: sdb.data.data[i].dtime, y: sdb.data.data[i].l2 })
+            dateLight1.push({x: sensorDB[i].dtime, y: sensorDB[i].l1 });
+            dateLight2.push({x: sensorDB[i].dtime, y: sensorDB[i].l2 })
         }
 
         let lightctx = document.getElementById("lightStats").getContext('2d');
@@ -261,15 +264,57 @@ async function run(){
         });
 
 
+        // Once everything is loaded we can hide the loading msg and reveal date entry
+        $('#loading').hide();
+        $('#live').show();
+
     } catch(e){
         console.error(e);
+        $('#loading').text("Failed to display data. Soz 🤷‍♂️");
     }
 }
 
+async function getLive() {
+
+    const sdb = await axios('/sdata');  // get sensor data
+    const sensorDB = sdb.data.data; // data is deep for some reason
+    const sdbLen = sensorDB.length; // shorthand for the number of records
+    const wdb = await axios('/wdata');  // get weather data
+    const weatherDB = wdb.data.data;
+    const wdbLen = weatherDB.length;
+
+    // ------------------- LIVE INFO ---------------------------------------------------
+
+    const currTemp = sensorDB[sdbLen - 1].temp; // get last record
+    const currHumid = sensorDB[sdbLen - 1].humid;
+    const currL1 = sensorDB[sdbLen - 1].l1;
+    const currL2 = sensorDB[sdbLen - 1].l2;
+    const currSoil = ((sensorDB[sdbLen - 1].soil / 1023) * 100).toFixed(2); // get percent to 2 dec places
+    const currExTemp = weatherDB[wdbLen - 1].temp; // latest outside
 
 
+    $('#live').html("Current Stats:<br>Temp:"+currTemp+"°C<br>Humidity:"+currHumid+"(RH)<br>L1:"+currL1+"%<br>L2:"+currL2+"%<br>Soil Moisture:"+currSoil+"%<br>External Temp:"+currExTemp+"°C");
+
+}
 
 
-run();
+$(document).ready(function() {
+
+    let startDate, endDate; // Query range for data
+
+    $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
+        startDate = new Date($('#startDate').val());
+        endDate = new Date($('#endDate').val());
+    });
+
+    startGraphs(startDate, endDate); // passing the date range params
+
+    try {
+        getLive()
+    } catch (e) {
+        console.error(e);
+    }
+
+});
 
 
