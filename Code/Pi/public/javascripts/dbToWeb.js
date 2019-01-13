@@ -4,7 +4,14 @@
 
 async function startGraphs(startDate, endDate){
     try {
-        const sdb = await axios('/sdata');  // get sensor data
+        const sdb = await axios('/sdata',{
+            params: {
+                start: startDate,
+                end: endDate
+            }
+        }).catch(function(error){
+            console.log(error);
+        });  // get sensor data
         const sensorDB = sdb.data.data;
 
         // ------------------- TEMPERATURE GRAPH -------------------------------------------
@@ -300,20 +307,21 @@ async function getLive() {
 
 $(document).ready(function() {
 
-    let startDate, endDate; // Query range for data
-
-    $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
-        startDate = new Date($('#startDate').val());
-        endDate = new Date($('#endDate').val());
-    });
-
-    startGraphs(startDate, endDate); // passing the date range params
+    let defaultStart = '2017-11-01T00:00:00.000Z';
+    let defaultEnd = '2050-11-01T00:00:00.000Z';
+    startGraphs(defaultStart, defaultEnd); // passing the date range params
 
     try {
         getLive()
     } catch (e) {
         console.error(e);
     }
+
+    $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
+        startDate = new Date($('#startDate').val());
+        endDate = new Date($('#endDate').val());
+        startGraphs(startDate, endDate);
+    });
 
 });
 
