@@ -1,45 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="images/favicon-leaf.ico">
     <title><%= title %></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+    <header>
+      <div class="collapse bg-light" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">This Project</h4>
+              <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor eros, efficitur at mi vel, consequat mollis ligula. Aenean blandit magna sed magna finibus hendrerit. Sed sollicitudin semper tincidunt. Donec consectetur mi scelerisque, pulvinar urna sit amet, eleifend lorem. Morbi gravida ex ipsum, a laoreet tortor scelerisque et.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Pages</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Home</a></li>
+                <li><a href="#" class="text-white">How It Works</a></li>
+                <li><a href="#" class="text-white">More Data</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar navbar-light bg-light box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <i class="fas fa-leaf"></i>
+            <strong>Smart Greenhouse / <%= title %></strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <main role="main">
+      <div class="container">
+        <div class="row justify-content-md-center bg-light box-shadow">
+          <div class="contextContainer col-8">
+            <p>Database records for the smart greenhouse sensors and weather data. Use the query selection
+              tool below to refine the data shown. Live statistics can be found at the bottom of this
+              page.</p>
+            <div id="dateRangeSelector">
+              <h2>Query selection</h2>
+              <label for="startDate">Start Date Range:</label>
+              <input type="date" id="startDate" name="startDateRange" value="2019-01-01">
+              <label for="endDate">End Date Range:</label>
+              <input type="date" id="endDate" name="endDateRange" value="2019-01-02">
+              <button type="button" class="btn btn-outline-primary" id="dateRangeBtn">Go</button>
+            </div>
+            <div id="manualAutoVals" class="container">
+              <h2>Manual Automation Settings</h2>
+              <form>
+                <div class="form-group row">
+                  <label for="wateringFreqIn">Watering Frequency Per Day</label>
+                  <select class="form-control form-control-sm col-10" id="wateringFreqIn">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                  <button type="button" class="btn btn-outline-primary col-2">Apply</button>
+                </div>
+                <div class="form-group row">
+                  <label for="fanFreqIn">Dehumidifying Frequency Per Day</label>
+                  <select class="form-control form-control-sm col-10" id="fanFreqIn">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                  <button type="button" class="btn btn-outline-primary col-2">Apply</button>
+                </div>
+                <div class="form-group row">
+                  <label for="lightFreqIn">Watering Frequency Per Day</label>
+                  <select class="form-control form-control-sm col-10" id="lightFreqIn">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                  <button type="button" class="btn btn-outline-primary col-2">Apply</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loading" class="row justify-content-md-center bg-light box-shadow">
+        Loading...
+      </div>
+
+      <div class="statsContainer row">
+        <div class="col-6">
+          <canvas id="tempStats"></canvas>
+        </div>
+        <div class="col-6">
+          <canvas id="humidStats"></canvas>
+        </div>
+
+      </div>
+      <div class="statsContainer row">
+        <div class="col-6">
+          <canvas id="soilStats"></canvas>
+        </div>
+        <div class="col-6">
+          <canvas id="lightStats"></canvas>
+        </div>
+      </div>
+
+      <div id="live">live data should be here</div>
+    </main>
+
+    <footer>
+      Copyright Ben Rose 2019
+    </footer>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/javascripts/dbToWeb.js"></script>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <div class="contextContainer">
-      <p>Database records for the smart greenhouse sensors and weather data. Use the query selection
-      tool below to refine the data shown. Live statistics can be found at the bottom of this
-      page.</p><br>
-      <div id="dateRangeSelector">
-        <h2>Query selection</h2>
-        <label for="startDate">Start Date Range:</label>
-        <input type="date" id="startDate" name="startDateRange" value="2019-01-01">
-        <label for="endDate">End Date Range:</label>
-        <input type="date" id="endDate" name="endDateRange" value="2019-01-02">
-        <button type="button" id="dateRangeBtn">Go</button>
-      </div>
-      <div id="manualAutoVals">
-        <h2>Automation Settings</h2>
-        <p>Settings for the manual configuration of watering will be here</p>
-        <p>Settings for the manual configuration of dehumidifying will be here</p>
-        <p>Settings for the manual configuration of lighting will be here</p>
-      </div>
-    </div>
-    <div id="statsContainer">
-      <canvas id="tempStats"></canvas>
-      <canvas id="humidStats"></canvas>
-    </div>
-    <div id="statsContainer">
-      <canvas id="soilStats"></canvas>
-      <canvas id="lightStats"></canvas>
-    </div>
-
-    <p id="loading">Loading Database...</p>
-    <div id="live">live data should be here</div>
-
   </body>
 </html>

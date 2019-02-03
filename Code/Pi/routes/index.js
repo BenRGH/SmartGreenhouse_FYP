@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 // Postgresness
-const { Pool, Client } = require('pg')
+const { Pool, Client } = require('pg');
 
 // GET home page
 router.get('/', async function(req, res, next) {
-  res.render('index', { title: 'Main Page' });
+  res.render('index', { title: 'Home' });
 });
+
 
 // GET sensor data
 router.get('/sdata', async function(req,res) {
@@ -15,29 +16,29 @@ router.get('/sdata', async function(req,res) {
         user: 'pi',
         host: 'localhost',
         database: 'test',
-        password: process.env.PGPASSWORD,
+        password: process.env.PGPASSWORD, // So the db pass isn't on github
         port: 5432,
     });
 
     console.log(req.query.start, req.query.end);
 
-    const getDataQuery = {
+    let getDataQuery = {
         name: 'getData',
-        text: 'SELECT * FROM sensors WHERE dtime BETWEEN $1::TIMESTAMP AND $2::TIMESTAMP',
+        text: 'SELECT * FROM sensors WHERE dtime BETWEEN $1 AND $2',
         values: [req.query.start, req.query.end]
     };
 
     client.query(getDataQuery).then(resp => {
         if (resp.rows.length < 1){
             client.end();
-            console.log("help");
+            console.log("couldn't send sensor data");
             return res.json({ success: false, msg: 'Database read error' });
         }
 
         client.end();
         return res.json({ success: true, data: resp.rows });
     }).catch(function (error) {
-        console.log(error);
+        console.error(error);
     })
 
 });
@@ -53,15 +54,31 @@ router.get('/wdata', async function(req,res){
         port: 5432,
     });
 
-    client.query('SELECT * FROM weather').then(resp => {
+    let getDataQuery = {
+        name: 'getWData',
+        text: 'SELECT * FROM weather WHERE dtime BETWEEN $1 AND $2',
+        values: [req.query.start, req.query.end]
+    };
+
+    client.query(getDataQuery).then(resp => {
         if (resp.rows.length < 1){
             client.end();
+            console.log("couldn't send weather data");
             return res.json({ success: false, msg: 'Database read error' });
         }
 
         client.end();
         return res.json({ success: true, data: resp.rows })
+    }).catch((err)=>{
+        console.error(err);
     })
+});
+
+
+// GET live values
+router.get('/live', async function(req,res){
+    // Return live vals
+
 });
 
 module.exports = router;

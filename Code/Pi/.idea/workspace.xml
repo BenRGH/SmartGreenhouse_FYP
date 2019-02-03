@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25a74d82-e32a-42ed-a4e4-19557264972a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/29f706ad-6c2e-4767-974d-0cb984ba1648/storage_v2/_src_/database/test.kkQ2AA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/29f706ad-6c2e-4767-974d-0cb984ba1648/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5185aa4b-84a5-48d3-ac53-aeca790a0da4/storage_v2/_src_/database/test.kkQ2AA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5185aa4b-84a5-48d3-ac53-aeca790a0da4/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/963f8fe5-cd8f-4026-bbbd-c7a66fc03565/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/963f8fe5-cd8f-4026-bbbd-c7a66fc03565/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -86,13 +98,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+            <state relative-caret-position="690">
+              <caret line="136" column="16" lean-forward="true" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
               <folding>
                 <element signature="e#216#260#0" expanded="true" />
+                <element signature="e#416#962#0" />
+                <element signature="e#990#1669#0" />
+                <element signature="e#1739#2041#0" />
                 <element signature="e#2152#2519#0" />
                 <element signature="e#2544#2978#0" />
               </folding>
@@ -103,26 +118,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-              <folding>
-                <element signature="e#851#1323#0" />
-              </folding>
+            <state relative-caret-position="437">
+              <caret line="28" column="6" lean-forward="true" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2346">
-              <caret line="319" column="87" selection-start-line="319" selection-start-column="87" selection-end-line="319" selection-end-column="87" />
+            <state relative-caret-position="261">
+              <caret line="482" column="59" selection-start-line="482" selection-start-column="59" selection-end-line="482" selection-end-column="59" />
               <folding>
-                <element signature="e#904#2654#0" />
-                <element signature="e#3070#4606#0" />
-                <element signature="e#5069#6628#0" />
-                <element signature="e#7145#8938#0" />
-                <element signature="n#!!block;n#getLive#0" />
+                <element signature="e#186#1309#0" />
+                <element signature="e#699#1896#0" />
+                <element signature="e#1438#3158#0" />
+                <element signature="e#2681#4424#0" />
+                <element signature="e#3954#5955#0" />
+                <element signature="e#5405#6682#0" />
+                <element signature="e#6726#8006#0" />
+                <element signature="e#8048#9354#0" />
+                <element signature="e#9398#10714#0" />
+                <element signature="e#10861#15540#0" />
               </folding>
             </state>
           </provider>
@@ -131,8 +148,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="661">
+              <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+              <folding>
+                <element signature="n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+            <state relative-caret-position="758">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -150,7 +170,7 @@
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="67" selection-start-column="53" selection-end-column="67" />
+              <caret column="70" selection-start-column="70" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -177,7 +197,6 @@
         <option value="$PROJECT_DIR$/static/style.css" />
         <option value="$PROJECT_DIR$/templates/stats.html" />
         <option value="$PROJECT_DIR$/public/javascripts/websocketsScript.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5185aa4b-84a5-48d3-ac53-aeca790a0da4/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/963f8fe5-cd8f-4026-bbbd-c7a66fc03565/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/29f706ad-6c2e-4767-974d-0cb984ba1648/console.sql" />
@@ -185,12 +204,13 @@
         <option value="$PROJECT_DIR$/public/javascripts/pythonToWeb.js" />
         <option value="$PROJECT_DIR$/init.sh" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/public/javascripts/dbToWeb.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -211,7 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,6 +257,12 @@
             <path>
               <item name="Pi" type="b2602c69:ProjectViewProjectNode" />
               <item name="Pi" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pi" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -250,16 +275,22 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547412446927" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549227082821" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="8.11.4" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.15.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -355,44 +386,50 @@
       <workItem from="1544480858026" duration="521000" />
       <workItem from="1547396509353" duration="27000" />
       <workItem from="1547396559107" duration="15643000" />
+      <workItem from="1548432975252" duration="6000" />
+      <workItem from="1549203979254" duration="231000" />
+      <workItem from="1549204229722" duration="18714000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113807000" />
+    <option name="totallyTimeSpent" value="132758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7280335" visible="true" weight="0.16612642" />
-      <window_info id="Structure" order="1" sideWeight="0.27196652" side_tool="true" visible="true" weight="0.16612642" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7251829" visible="true" weight="0.16612642" />
+      <window_info id="Structure" order="1" sideWeight="0.27481714" side_tool="true" visible="true" weight="0.16612642" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="6" />
       <window_info id="npm" order="7" sideWeight="0.5010482" side_tool="true" weight="0.22606596" />
+      <window_info anchor="bottom" id="File Transfer" weight="0.12066246" />
+      <window_info anchor="bottom" id="SQL Generator" weight="0.329653" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329653" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.21916667" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992095" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49959776" weight="0.20452641" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49959776" weight="0.20425868" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5004023" side_tool="true" weight="0.205" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="Pylint" order="13" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="14" visible="true" weight="0.24605678" />
-      <window_info anchor="bottom" id="SQL" order="15" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="14" visible="true" weight="0.24526814" />
+      <window_info anchor="bottom" id="SQL" order="15" weight="0.329653" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32984716" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.110210694" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.2504052" />
       <window_info anchor="right" id="Mongo Explorer" order="5" weight="0.3354787" />
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Palette" order="7" />
@@ -400,6 +437,7 @@
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" id="Json Parser" order="11" weight="0.32984716" />
+      <window_info anchor="right" id="Remote Host" order="12" weight="0.1936791" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,13 +448,6 @@
     <entry file="file://$PROJECT_DIR$/templates/home.html" />
     <entry file="file://$PROJECT_DIR$/templates/stats.html" />
     <entry file="file://$PROJECT_DIR$/static/style.css" />
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://5185aa4b-84a5-48d3-ac53-aeca790a0da4/role/pi" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5185aa4b-84a5-48d3-ac53-aeca790a0da4/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -442,13 +473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/init.sh" />
     <entry file="file://$PROJECT_DIR$/sensorlogging.sh" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29f706ad-6c2e-4767-974d-0cb984ba1648/console.sql">
@@ -458,59 +482,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
-          <folding>
-            <element signature="e#216#260#0" expanded="true" />
-            <element signature="e#2152#2519#0" />
-            <element signature="e#2544#2978#0" />
-          </folding>
+        <state relative-caret-position="598">
+          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+    <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
+        <state relative-caret-position="1495">
+          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="67" selection-start-column="53" selection-end-column="67" />
+          <caret column="70" selection-start-column="70" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="758">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="661">
+          <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+          <folding>
+            <element signature="n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#851#1323#0" />
-          </folding>
+        <state relative-caret-position="437">
+          <caret line="28" column="6" lean-forward="true" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="319" column="87" selection-start-line="319" selection-start-column="87" selection-end-line="319" selection-end-column="87" />
+        <state relative-caret-position="261">
+          <caret line="482" column="59" selection-start-line="482" selection-start-column="59" selection-end-line="482" selection-end-column="59" />
           <folding>
-            <element signature="e#904#2654#0" />
-            <element signature="e#3070#4606#0" />
-            <element signature="e#5069#6628#0" />
-            <element signature="e#7145#8938#0" />
-            <element signature="n#!!block;n#getLive#0" />
+            <element signature="e#186#1309#0" />
+            <element signature="e#699#1896#0" />
+            <element signature="e#1438#3158#0" />
+            <element signature="e#2681#4424#0" />
+            <element signature="e#3954#5955#0" />
+            <element signature="e#5405#6682#0" />
+            <element signature="e#6726#8006#0" />
+            <element signature="e#8048#9354#0" />
+            <element signature="e#9398#10714#0" />
+            <element signature="e#10861#15540#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="136" column="16" lean-forward="true" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="16" />
+          <folding>
+            <element signature="e#216#260#0" expanded="true" />
+            <element signature="e#416#962#0" />
+            <element signature="e#990#1669#0" />
+            <element signature="e#1739#2041#0" />
+            <element signature="e#2152#2519#0" />
+            <element signature="e#2544#2978#0" />
           </folding>
         </state>
       </provider>

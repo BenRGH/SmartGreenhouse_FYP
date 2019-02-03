@@ -1,54 +1,181 @@
 // Ben Rose 2018
+$(document).ready(function() {
 
-
-
-async function startGraphs(startDate, endDate){
-    try {
-        const sdb = await axios('/sdata',{
-            params: {
-                start: startDate,
-                end: endDate
-            }
-        }).catch(function(error){
-            console.log(error);
-        });  // get sensor data
-        const sensorDB = sdb.data.data;
-
-        // ------------------- TEMPERATURE GRAPH -------------------------------------------
-
-        let dateTemps = [];
-        for (let i in sensorDB){
-            // stick the time and temps into a fancy array the chart can use
-            dateTemps.push({x: sensorDB[i].dtime, y: sensorDB[i].temp});
-        }
-
-        const wdb = await axios('/wdata');  // get weather data
-
-        let dateTempsWeather = [];
-        for (let i in wdb.data.data){
-            // same as above but for weather data
-            dateTempsWeather.push({x: wdb.data.data[i].dtime, y: wdb.data.data[i].temp})
-        }
-
-        // charting temps
-        let tempctx = document.getElementById("tempStats").getContext('2d');
-        let tempChart = new Chart(tempctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: "Sensor Temp",
-                    borderColor: '#f0342d',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateTemps
-                },{
-                    label: 'External Temp',
-                    borderColor: '#2587f0',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateTempsWeather
-                }]
+    // Init empty charts
+    // Contexts
+    const tempctx = document.getElementById("tempStats").getContext('2d');
+    const humidctx = document.getElementById("humidStats").getContext('2d');
+    const soilctx = document.getElementById("soilStats").getContext('2d');
+    const lightctx = document.getElementById("lightStats").getContext('2d');
+    // Chart instances
+    let tempChart = new Chart(tempctx, {
+        type: 'line',
+        data:{},
+        options: {
+            title: {
+                display: true,
+                text: 'Measured Temperature Over Time'
             },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'series',
+                    display: true,
+                    position: 'bottom',
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    },
+                    ticks: {
+                        major: {
+                            fontStyle: 'bold',
+                            fontColor: '#202020'
+                        }
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temp (C)'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    let humidChart = new Chart(humidctx, {
+        type: 'line',
+        data: {},
+        options: {
+            title: {
+                display: true,
+                text: 'Measured Humidity Over Time'
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'series',
+                    display: true,
+                    position: 'bottom',
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    },
+                    ticks: {
+                        major: {
+                            fontStyle: 'bold',
+                            fontColor: '#202020'
+                        }
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Humidity (RH)'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    let soilChart = new Chart(soilctx, {
+        type: 'scatter',
+        data: {},
+        options: {
+            title: {
+                display: true,
+                text: 'Measured Soil Moisture Over Time'
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'series',
+                    display: true,
+                    position: 'bottom',
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    },
+                    ticks: {
+                        major: {
+                            fontStyle: 'bold',
+                            fontColor: '#202020'
+                        }
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Soil Moisture (Saturation%1023)'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    let lightChart = new Chart(lightctx, {
+        type: 'line',
+        data: {},
+        options: {
+            title: {
+                display: true,
+                text: 'Measured Light Intensity Over Time'
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'series',
+                    display: true,
+                    position: 'bottom',
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    },
+                    ticks: {
+                        major: {
+                            fontStyle: 'bold',
+                            fontColor: '#202020'
+                        }
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Measured Light Intensity (% of sensor max)'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    function remakeCharts(){
+        // Clear old chart instances
+        tempChart.destroy();
+        humidChart.destroy();
+        soilChart.destroy();
+        lightChart.destroy();
+
+        // Make new
+        tempChart = new Chart(tempctx, {
+            type: 'line',
+            data:{},
             options: {
                 title: {
                     display: true,
@@ -85,28 +212,9 @@ async function startGraphs(startDate, endDate){
                 }
             }
         });
-
-
-        // ------------------- HUMIDITY GRAPH ---------------------------------------------
-
-        let dateHumid = [];
-        for (let i in sensorDB){
-            // more of the same but for humidity
-            dateHumid.push({x: sensorDB[i].dtime, y: sensorDB[i].humid})
-        }
-
-        let humidctx = document.getElementById("humidStats").getContext('2d');
-        let humidChart = new Chart(humidctx, {
+        humidChart = new Chart(humidctx, {
             type: 'line',
-            data: {
-                datasets: [{
-                    label: "Sensor Humidity",
-                    borderColor: '#32f04c',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateHumid
-                }]
-            },
+            data: {},
             options: {
                 title: {
                     display: true,
@@ -143,30 +251,9 @@ async function startGraphs(startDate, endDate){
                 }
             }
         });
-
-
-        // ------------------- SOIL MOISTURE GRAPH -------------------------------------------
-
-        let dateSoil = [];
-        for (let i in sensorDB){
-            // more of the same but for soil
-            dateSoil.push({x: sensorDB[i].dtime, y: (sensorDB[i].soil/1023)*100 })
-        }
-
-        console.log(dateSoil); // testing
-
-        let soilctx = document.getElementById("soilStats").getContext('2d');
-        let soilChart = new Chart(soilctx, {
+        soilChart = new Chart(soilctx, {
             type: 'scatter',
-            data: {
-                datasets: [{
-                    label: "Soil Moisture",
-                    borderColor: '#03b3f0',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateSoil
-                }]
-            },
+            data: {},
             options: {
                 title: {
                     display: true,
@@ -203,36 +290,9 @@ async function startGraphs(startDate, endDate){
                 }
             }
         });
-
-
-        // ------------------- LIGHT GRAPH ---------------------------------------------------
-
-        let dateLight1 = [];
-        let dateLight2 =[];
-        for (let i in sensorDB){
-            // more of the same but for light
-            dateLight1.push({x: sensorDB[i].dtime, y: sensorDB[i].l1 });
-            dateLight2.push({x: sensorDB[i].dtime, y: sensorDB[i].l2 })
-        }
-
-        let lightctx = document.getElementById("lightStats").getContext('2d');
-        let lightChart = new Chart(lightctx, {
+        lightChart = new Chart(lightctx, {
             type: 'line',
-            data: {
-                datasets: [{
-                    label: "Light 1 Intensity",
-                    borderColor: '#f03ad1',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateLight1
-                },{
-                    label: 'Light 2 Intensity',
-                    borderColor: '#7437f0',
-                    borderWidth: 2,
-                    fill: false,
-                    data: dateLight2
-                }]
-            },
+            data: {},
             options: {
                 title: {
                     display: true,
@@ -269,58 +329,181 @@ async function startGraphs(startDate, endDate){
                 }
             }
         });
-
-
-        // Once everything is loaded we can hide the loading msg and reveal date entry
-        $('#loading').hide();
-        $('#live').show();
-
-    } catch(e){
-        console.error(e);
-        $('#loading').text("Failed to display data. Soz 🤷‍♂️");
     }
-}
-
-async function getLive() {
-
-    const sdb = await axios('/sdata');  // get sensor data
-    const sensorDB = sdb.data.data; // data is deep for some reason
-    const sdbLen = sensorDB.length; // shorthand for the number of records
-    const wdb = await axios('/wdata');  // get weather data
-    const weatherDB = wdb.data.data;
-    const wdbLen = weatherDB.length;
-
-    // ------------------- LIVE INFO ---------------------------------------------------
-
-    const currTemp = sensorDB[sdbLen - 1].temp; // get last record
-    const currHumid = sensorDB[sdbLen - 1].humid;
-    const currL1 = sensorDB[sdbLen - 1].l1;
-    const currL2 = sensorDB[sdbLen - 1].l2;
-    const currSoil = ((sensorDB[sdbLen - 1].soil / 1023) * 100).toFixed(2); // get percent to 2 dec places
-    const currExTemp = weatherDB[wdbLen - 1].temp; // latest outside
 
 
-    $('#live').html("Current Stats:<br>Temp:"+currTemp+"°C<br>Humidity:"+currHumid+"(RH)<br>L1:"+currL1+"%<br>L2:"+currL2+"%<br>Soil Moisture:"+currSoil+"%<br>External Temp:"+currExTemp+"°C");
+    async function chartIt(startDate, endDate){
+        try {
+            // Get new data from db's
+            let sdb = await axios('/sdata',{
+                params: {
+                    start: startDate,
+                    end: endDate
+                }
+            }).catch(function(error){
+                console.log(error);
+            });
+            // get sensor data
+            let sensorDB = sdb.data.data;
 
-}
+            let wdb = await axios('/wdata',{
+                params:{
+                    start: startDate,
+                    end: endDate
+                }
+            }).catch((err)=>{
+                console.error(err);
+            });
+            // get weather data
+            let weatherDB = wdb.data.data;
+
+            // ------------------- TEMPERATURE GRAPH -------------------------------------------
+            let dateTemps = [];
+            for (let i in sensorDB){
+                // stick the time and temps into a fancy array the chart can use
+                dateTemps.push({x: sensorDB[i].dtime, y: sensorDB[i].temp});
+
+            }
+
+            let dateTempsWeather = [];
+            for (let i in wdb.data.data){
+                // same as above but for weather data
+                dateTempsWeather.push({x: weatherDB[i].dtime, y: weatherDB[i].temp})
+            }
+
+            // charting * temps
+            let tempDatasets = [{
+                label: "Sensor Temp",
+                borderColor: '#f0342d',
+                borderWidth: 2,
+                fill: false,
+                data: dateTemps
+            },{
+                label: 'External Temp',
+                borderColor: '#2587f0',
+                borderWidth: 2,
+                fill: false,
+                data: dateTempsWeather
+            }];
+
+            // This piece of pure headache updates the chart with the above data
+            tempChart.data.datasets.push(tempDatasets[0]); // Internal
+            tempChart.data.datasets.push(tempDatasets[1]); // External
+            tempChart.update(0);
 
 
-$(document).ready(function() {
 
-    let defaultStart = '2017-11-01T00:00:00.000Z';
-    let defaultEnd = '2050-11-01T00:00:00.000Z';
-    startGraphs(defaultStart, defaultEnd); // passing the date range params
+            // ------------------- HUMIDITY GRAPH ---------------------------------------------
 
-    try {
-        getLive()
-    } catch (e) {
-        console.error(e);
+            let dateHumid = [];
+            for (let i in sensorDB){
+                // more of the same but for humidity
+                dateHumid.push({x: sensorDB[i].dtime, y: sensorDB[i].humid})
+            }
+
+            let humidDatasets = [{
+                label: "Sensor Humidity",
+                borderColor: '#32f04c',
+                borderWidth: 2,
+                fill: false,
+                data: dateHumid
+            }];
+
+            // Update with data
+            humidChart.data.datasets.push(humidDatasets[0]);
+            humidChart.update(0);
+
+            // ------------------- SOIL MOISTURE GRAPH -------------------------------------------
+
+            let dateSoil = [];
+            for (let i in sensorDB){
+                // more of the same but for soil
+                dateSoil.push({x: sensorDB[i].dtime, y: (sensorDB[i].soil/1023)*100 })
+            }
+
+            console.log(dateSoil); // testing
+
+            let soilDatasets = [{
+                label: "Soil Moisture",
+                borderColor: '#03b3f0',
+                borderWidth: 2,
+                fill: false,
+                data: dateSoil
+            }];
+
+            // Update with data
+            soilChart.data.datasets.push(soilDatasets[0]);
+            soilChart.update(0);
+
+
+            // ------------------- LIGHT GRAPH ---------------------------------------------------
+
+            let dateLight1 = [];
+            let dateLight2 =[];
+            for (let i in sensorDB){
+                // more of the same but for light
+                dateLight1.push({x: sensorDB[i].dtime, y: sensorDB[i].l1 });
+                dateLight2.push({x: sensorDB[i].dtime, y: sensorDB[i].l2 })
+            }
+
+            let lightDatasets = [{
+                label: "Light 1 Intensity",
+                borderColor: '#f03ad1',
+                borderWidth: 2,
+                fill: false,
+                data: dateLight1
+            },{
+                label: 'Light 2 Intensity',
+                borderColor: '#7437f0',
+                borderWidth: 2,
+                fill: false,
+                data: dateLight2
+            }];
+
+            // Update with data
+            lightChart.data.datasets.push(lightDatasets[0]);
+            lightChart.data.datasets.push(lightDatasets[1]);
+            lightChart.update(0);
+
+
+            // Once everything is loaded we can hide the loading msg and reveal charts
+            $('#live').show();
+
+        } catch(e){
+            console.error(e);
+            $('#loading').text("Failed to display data. Soz 🤷‍♂️");
+        }
     }
+
+    async function getLive() {
+        // Do this
+    }
+
+
+    let defaultStart = new Date('2017-11-01T00:00:00.000Z'); // Before the start of this project
+    let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
+
+    $('.statsContainer').hide();
+    $('#loading').show();
+    chartIt(defaultStart, defaultEnd); // Draw charts with default * data
+    $('#loading').hide();
+    $('.statsContainer').show();
+
+    // try {
+    //     getLive()
+    // } catch (e) {
+    //     console.error(e);
+    // }
 
     $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
-        startDate = new Date($('#startDate').val());
-        endDate = new Date($('#endDate').val());
-        startGraphs(startDate, endDate);
+        let startDate = new Date($('#startDate').val());
+        let endDate = new Date($('#endDate').val());
+        console.log("pls work");
+        console.log(startDate);
+        console.log(endDate);
+        remakeCharts(); // Have to wipe the instance before making a new one
+        chartIt(startDate, endDate); // Make charts with new dataset
+
     });
 
 });

@@ -6,7 +6,6 @@
 # works with the data to display it as an http server.
 
 import serial, time, sys, psycopg2, datetime
-from daemonize import Daemonize
 from weather import Weather, Unit
 
 pid = "/tmp/sensorscript.pid"  # needed for daemonizing
@@ -137,7 +136,7 @@ def main():
             print("it couldn't get a sensor val")
             pass
 
-        time.sleep(20)  # Update db every 10s
+        time.sleep(10000)  # Update db every 10m
 
     return "this shouldn't appear anywhere"
 

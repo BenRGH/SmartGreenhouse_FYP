@@ -1,0 +1,3 @@
+big 12v fan = 	m1
+small 7v fan = 	m2
+pump = 			m3

@@ -14,7 +14,7 @@
       <ObjectId>16392</ObjectId>
       <StateNumber>556</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>501</IntrospectionStateNumber>
+      <IntrospectionStateNumber>13989</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -75,7 +75,7 @@
       <StateNumber>347</StateNumber>
       <Owner>postgres</Owner>
       <IntrospectionTimestamp>2018-12-09.17:09:22.258</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1951</IntrospectionStateNumber>
+      <IntrospectionStateNumber>13990</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
