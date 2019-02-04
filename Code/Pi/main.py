@@ -5,8 +5,9 @@
 # It reads from the arduinos via serial monitor (USB) and
 # works with the data to display it as an http server.
 
-import serial, time, sys, psycopg2, datetime
-from weather import Weather, Unit
+import serial, time, sys, psycopg2, datetime, pyowm
+
+owm = pyowm.OWM('2ba12dc7a5682ea8eb7831e1b996fe5d') # API Key
 
 pid = "/tmp/sensorscript.pid"  # needed for daemonizing
 
@@ -93,21 +94,22 @@ def addToDB(dtime, soil, temp, humid, L1, L2):
 
 
 def addWeather():
-    weather = Weather(unit=Unit.CELSIUS)
-    location = weather.lookup_by_location('portsmouth')
-    condition = location.condition
+    observation = owm.weather_at_place('Portsmouth,GB')
+    w = observation.get_weather()  # does what it says on the tin
+    print(w)  # debugging
+    currTemp = w.get_temperature('celsius')['temp']
+    currHumidity = w.get_humidity()
 
     conn = psycopg2.connect('dbname=test user=pi')
     cur = conn.cursor()
 
-    query = "INSERT INTO weather (dtime, temp) VALUES (%s, %s)"
-    cur.execute(query, (datetime.datetime.now(), condition.temp))
+    query = "INSERT INTO weather (dtime, temp, humidity) VALUES (%s, %s, %s)"
+    cur.execute(query, (datetime.datetime.now(), currTemp, currHumidity))
 
     # Commit changes to db and close connection
     conn.commit()
     cur.close()
     conn.close()
-
 
 
 def main():
@@ -129,14 +131,14 @@ def main():
                 sensorData['L2']
             )
 
-            if datetime.datetime.now().minute % 2 == 0:
-                addWeather()  # Add current temp to db
+            addWeather()  # Add current temp to db
+            # LIMITED TO 60 TIMES A MINUTE!
 
         except Exception:
             print("it couldn't get a sensor val")
             pass
 
-        time.sleep(10000)  # Update db every 10m
+        time.sleep(600)  # Update db every 10m
 
     return "this shouldn't appear anywhere"
 

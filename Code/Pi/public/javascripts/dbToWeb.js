@@ -366,7 +366,7 @@ $(document).ready(function() {
             }
 
             let dateTempsWeather = [];
-            for (let i in wdb.data.data){
+            for (let i in weatherDB){
                 // same as above but for weather data
                 dateTempsWeather.push({x: weatherDB[i].dtime, y: weatherDB[i].temp})
             }
@@ -401,16 +401,28 @@ $(document).ready(function() {
                 dateHumid.push({x: sensorDB[i].dtime, y: sensorDB[i].humid})
             }
 
+            let dateHumidWeather = [];
+            for (let i in weatherDB){
+                dateHumidWeather.push({x: weatherDB[i].dtime, y: weatherDB[i].humidity})
+            }
+
             let humidDatasets = [{
                 label: "Sensor Humidity",
                 borderColor: '#32f04c',
                 borderWidth: 2,
                 fill: false,
                 data: dateHumid
+            },{
+                label: 'External Humidity',
+                borderColor: '#2587f0',
+                borderWidth: 2,
+                fill: false,
+                data: dateHumidWeather
             }];
 
             // Update with data
             humidChart.data.datasets.push(humidDatasets[0]);
+            humidChart.data.datasets.push(humidDatasets[1]);
             humidChart.update(0);
 
             // ------------------- SOIL MOISTURE GRAPH -------------------------------------------
@@ -480,7 +492,7 @@ $(document).ready(function() {
     }
 
 
-    let defaultStart = new Date('2017-11-01T00:00:00.000Z'); // Before the start of this project
+    let defaultStart = new Date('2019-01-01T00:00:00.000Z'); // Before the start of this project
     let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
 
     $('.statsContainer').hide();
