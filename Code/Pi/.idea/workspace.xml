@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25a74d82-e32a-42ed-a4e4-19557264972a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/howitworks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/more.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/bits/foot.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/bits/head.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/howitworks.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/more.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5cefd10-f890-402a-b51c-c8f5bfa01648/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon-leaf.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
@@ -96,88 +85,86 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="99" column="51" lean-forward="true" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
-              <folding>
-                <element signature="e#416#962#0" />
-                <element signature="e#990#1669#0" />
-                <element signature="e#1739#2041#0" />
-                <element signature="e#2152#2519#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="83" selection-start-line="83" selection-end-line="83" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="494" column="40" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
-              <folding>
-                <element signature="e#186#1309#0" />
-                <element signature="e#699#1896#0" />
-                <element signature="e#1438#3158#0" />
-                <element signature="e#1809#3144#0" />
-                <element signature="e#2681#4424#0" />
-                <element signature="e#3954#5955#0" />
-                <element signature="e#5141#5157#0" />
-                <element signature="e#5405#6682#0" />
-                <element signature="e#6726#8006#0" />
-                <element signature="e#8048#9354#0" />
-                <element signature="e#9398#10714#0" />
-                <element signature="e#10847#15665#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/index.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="128" column="35" lean-forward="true" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
-              <folding>
-                <element signature="n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#select#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#select#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#select#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" selection-start-column="21" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="230">
+                  <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+                  <folding>
+                    <element signature="e#305#1144#0" />
+                    <element signature="e#1213#1956#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/views/index.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="230">
+                  <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="552">
+                  <caret line="51" selection-start-line="51" selection-end-line="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="21" selection-start-column="21" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="69">
+                  <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="556">
+                  <caret line="505" column="41" lean-forward="true" selection-start-line="505" selection-start-column="41" selection-end-line="505" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#456#1581#0" />
+                    <element signature="e#1625#2753#0" />
+                    <element signature="e#2795#3949#0" />
+                    <element signature="e#3993#5157#0" />
+                    <element signature="e#5188#10722#0" />
+                    <element signature="e#5405#6682#0" />
+                    <element signature="e#6726#8006#0" />
+                    <element signature="e#8048#9354#0" />
+                    <element signature="e#9398#10714#0" />
+                    <element signature="e#10771#15856#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -208,16 +195,19 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql" />
-        <option value="$PROJECT_DIR$/public/javascripts/dbToWeb.js" />
         <option value="$PROJECT_DIR$/views/bits/head.ejs" />
-        <option value="$PROJECT_DIR$/views/bits/foot.ejs" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/views/howitworks.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/howitworks.js" />
         <option value="$PROJECT_DIR$/routes/more.js" />
         <option value="$PROJECT_DIR$/views/more.ejs" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/public/javascripts/index.js" />
+        <option value="$PROJECT_DIR$/views/bits/foot.ejs" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/dbToWeb.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
       </list>
     </option>
@@ -228,8 +218,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="421" />
+    <option name="y" value="-25" />
     <option name="width" value="1294" />
     <option name="height" value="1407" />
   </component>
@@ -294,8 +285,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -308,7 +299,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549238448143" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550080278427" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.15.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -339,8 +330,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main with python">
+  <component name="RunManager" selected="Node.js.ide-scripting.js">
     <configuration name="app.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="ide-scripting.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/bin/www" working-dir="$PROJECT_DIR$">
@@ -372,9 +366,11 @@
       <item itemvalue="Node.js.app.js" />
       <item itemvalue="Node.js.www" />
       <item itemvalue="Python.main with python" />
+      <item itemvalue="Node.js.ide-scripting.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.ide-scripting.js" />
         <item itemvalue="Node.js.www" />
       </list>
     </recent_temporary>
@@ -414,28 +410,32 @@
       <workItem from="1548432975252" duration="6000" />
       <workItem from="1549203979254" duration="231000" />
       <workItem from="1549204229722" duration="27951000" />
+      <workItem from="1549238724056" duration="546000" />
+      <workItem from="1549239575865" duration="88000" />
+      <workItem from="1549727884810" duration="737000" />
+      <workItem from="1549805020557" duration="944000" />
+      <workItem from="1550070714051" duration="9210000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141995000" />
+    <option name="totallyTimeSpent" value="153520000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7251829" visible="true" weight="0.16612642" />
-      <window_info id="Structure" order="1" sideWeight="0.27481714" side_tool="true" visible="true" weight="0.16612642" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78152066" visible="true" weight="0.081478536" />
+      <window_info id="Structure" order="1" sideWeight="0.2184793" side_tool="true" visible="true" weight="0.081478536" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="6" />
       <window_info id="npm" order="7" sideWeight="0.5010482" side_tool="true" weight="0.22606596" />
-      <window_info anchor="bottom" id="File Transfer" weight="0.12066246" />
-      <window_info anchor="bottom" id="SQL Generator" weight="0.329653" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329653" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21916667" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21848081" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992095" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -447,13 +447,15 @@
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="Pylint" order="13" />
-      <window_info anchor="bottom" id="Database Console" order="14" visible="true" weight="0.24526814" />
-      <window_info anchor="bottom" id="SQL" order="15" weight="0.329653" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="14" visible="true" weight="0.18637432" />
+      <window_info anchor="bottom" id="SQL" order="15" weight="0.32889584" />
+      <window_info anchor="bottom" id="File Transfer" order="16" weight="0.12059514" />
+      <window_info anchor="bottom" id="SQL Generator" order="17" weight="0.329653" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32984716" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.2082658" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.10214626" />
       <window_info anchor="right" id="Mongo Explorer" order="5" weight="0.3354787" />
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Palette" order="7" />
@@ -506,52 +508,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1495">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="99" column="51" lean-forward="true" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
-          <folding>
-            <element signature="e#416#962#0" />
-            <element signature="e#990#1669#0" />
-            <element signature="e#1739#2041#0" />
-            <element signature="e#2152#2519#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js" />
     <entry file="file://$PROJECT_DIR$/views/error.ejs">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/bits/foot.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -574,20 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="83" selection-start-line="83" selection-end-line="83" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/bits/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/howitworks.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -602,37 +547,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2277">
+          <caret line="99" column="51" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#305#1144#0" />
+            <element signature="e#1213#1956#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/bits/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/bits/foot.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="494" column="40" selection-start-line="494" selection-start-column="40" selection-end-line="494" selection-end-column="40" />
+        <state relative-caret-position="556">
+          <caret line="505" column="41" lean-forward="true" selection-start-line="505" selection-start-column="41" selection-end-line="505" selection-end-column="41" />
           <folding>
-            <element signature="e#186#1309#0" />
-            <element signature="e#699#1896#0" />
-            <element signature="e#1438#3158#0" />
-            <element signature="e#1809#3144#0" />
-            <element signature="e#2681#4424#0" />
-            <element signature="e#3954#5955#0" />
-            <element signature="e#5141#5157#0" />
+            <element signature="e#456#1581#0" />
+            <element signature="e#1625#2753#0" />
+            <element signature="e#2795#3949#0" />
+            <element signature="e#3993#5157#0" />
+            <element signature="e#5188#10722#0" />
             <element signature="e#5405#6682#0" />
             <element signature="e#6726#8006#0" />
             <element signature="e#8048#9354#0" />
             <element signature="e#9398#10714#0" />
-            <element signature="e#10847#15665#0" />
+            <element signature="e#10771#15856#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="128" column="35" lean-forward="true" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
-          <folding>
-            <element signature="n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#select#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#select#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#select#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="230">
+          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
         </state>
       </provider>
     </entry>

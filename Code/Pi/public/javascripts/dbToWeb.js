@@ -483,7 +483,7 @@ $(document).ready(function() {
 
         } catch(e){
             console.error(e);
-            $('#loading').text("Failed to display data. Soz 🤷‍♂️");
+            $('#loading').text("Failed to display data due to either database error or network disconnect. Soz 🤷‍♂️");
         }
     }
 
@@ -491,12 +491,22 @@ $(document).ready(function() {
         // Do this
     }
 
-
-    let defaultStart = new Date('2019-01-01T00:00:00.000Z'); // Before the start of this project
+    // old '2019-01-01T00:00:00.000Z'
+    let defaultStart = new Date(); // By default this is today
+    defaultStart.setDate(defaultStart.getDate() - 3);  // 3 days before today
     let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
 
-    $('.statsContainer').hide();
-    $('#loading').show();
+    // Set the values in the input field so the above is global changing
+    //let formattedDefaultStart = defaultStart.getFullYear() + "-" + defaultStart.getMonth() + "-" + defaultStart.getDate();
+    let startDateField = $('#startDate');
+
+    console.log(startDateField.val());
+    document.querySelector("#startDate").value = defaultStart.toISOString().substr(0,10);
+    console.log(startDateField.val());
+    //console.log(formattedDefaultStart);
+
+    // $('#endDate').val(defaultEnd);
+
     chartIt(defaultStart, defaultEnd); // Draw charts with default * data
     $('#loading').hide();
     $('.statsContainer').show();
@@ -508,11 +518,32 @@ $(document).ready(function() {
     // }
 
     $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
-        let startDate = new Date($('#startDate').val());
-        let endDate = new Date($('#endDate').val());
+        let rawStartDate = new Date($('#startDate').val());
+        console.log("raw start date: " + rawStartDate.toString());
+        let rawStartTime = $('#startTime').val();
+        console.log("raw start time: " + rawStartTime.toString());
+
+        rawStartDate.setHours(parseInt(rawStartTime.substr(0,2)));
+        rawStartDate.setMinutes(parseInt(rawStartTime.substr(3,2)));
+        console.log(rawStartDate);
+
+        let startDate = new Date(rawStartDate);
+
+
+        let rawEndDate = new Date($('#endDate').val());
+        console.log("raw end date: " + rawEndDate.toString());
+        let rawEndTime = $('#endTime').val();
+        console.log("raw end time: " + rawEndTime.toString());
+
+        rawEndDate.setHours(parseInt(rawEndTime.substr(0,2)));
+        rawEndDate.setMinutes(parseInt(rawEndTime.substr(3,2)));
+        console.log(rawEndDate);
+        let endDate = new Date(rawEndDate);
+
         console.log("pls work");
-        console.log(startDate);
-        console.log(endDate);
+        // console.log(startDate);
+        // console.log(endDate);
+
         remakeCharts(); // Have to wipe the instance before making a new one
         chartIt(startDate, endDate); // Make charts with new dataset
 

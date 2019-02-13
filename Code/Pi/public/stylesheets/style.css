@@ -48,6 +48,10 @@ header{
   display: none;
 }
 
+input{
+
+}
+
 #dateRangeSelector{
   display: block;
 }

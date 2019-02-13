@@ -59,21 +59,25 @@
             <p>Database records for the smart greenhouse sensors and weather data. Use the query selection
               tool below to refine the data shown. Live statistics can be found at the bottom of this
               page.</p>
-            <form id="dateRangeSelector">
+            <form id="dateRangeSelector" class="container">
               <h2>Query Date Range</h2>
-              <div class="form-group">
-                <label for="startDate">Start:</label>
-                <input type="date" id="startDate" name="startDateRange" value="2017-01-01">
+              <div class="form-group row">
+                <label class="col-md-4" for="startTime startDate">Start:</label>
+                <input class="col-md-4" type="time" id="startTime" name="startTimeRange" value="00:00">
+                <input class="col-md-4" type="date" id="startDate" name="startDateRange">
+                <!--value="2019-01-01"-->
               </div>
-              <div class="form-group">
-                <label for="endDate">End:</label>
-                <input type="date" id="endDate" name="endDateRange" value="2050-01-02">
+              <div class="form-group row">
+                <label class="col-md-4" for="endTime endDate">End:</label>
+                <input class="col-md-4" type="time" id="endTime" name="endTimeRange" value="00:00">
+                <input class="col-md-4" type="date" id="endDate" name="endDateRange">
+                <!--value="2050-01-02"-->
               </div>
               <button type="button" class="btn btn-outline-primary" id="dateRangeBtn">Go</button>
             </form>
           </div>
           <div id="manualAutoVals" class="col-6">
-            <h2>Manual Automation Settings</h2>
+            <h2>Manual Settings</h2>
             <form>
               <div class="form-group">
                 <label for="wateringFreqIn">Watering Frequency Per Day</label>
