@@ -2,6 +2,17 @@
 <html lang="en">
     <head>
         <% include bits/head.ejs %>
+        <style>
+            body, html
+            {
+                margin: 0; padding: 0; height: 100%; overflow: hidden;
+            }
+
+            #content
+            {
+                position:absolute; left: 0; right: 0; bottom: 0; top: 0px;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -39,26 +50,24 @@
             </div>
         </header>
 
+        <div id="content">
+            <iframe width="100%" height="100%" frameborder="0" src="https://dweet.dwitter.net/id/10534?autoplay=1" allowFullScreen="true"></iframe>
+        </div>
+
         <main>
-            <section class="jumbotron text-center">
-                <div class="container">
-                    <h1 class="jumbotron-heading"><%= title %></h1>
-                    <p class="lead text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor eros, efficitur at mi vel, consequat mollis ligula. Aenean blandit magna sed magna finibus hendrerit. Sed sollicitudin semper tincidunt. Donec consectetur mi scelerisque, pulvinar urna sit amet, eleifend lorem. Morbi gravida ex ipsum, a laoreet tortor scelerisque et.
-                    </p>
-                </div>
-            </section>
+            <!--<section class="jumbotron text-center">-->
+                <!--<div class="container">-->
+                    <!--<h1 class="jumbotron-heading"><%= title %></h1>-->
+                    <!--<p class="lead">-->
+                        <!---->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</section>-->
 
-            <div id="loading" class="row justify-content-md-center bg-light box-shadow">
-                Loading...
-            </div>
 
-            <div class="container">
-                Beep Boop Empty Page
-            </div>
 
         </main>
 
-        <% include bits/foot.ejs %>
+        <!--<% include bits/foot.ejs %>-->
     </body>
 </html>

@@ -500,12 +500,12 @@ $(document).ready(function() {
     //let formattedDefaultStart = defaultStart.getFullYear() + "-" + defaultStart.getMonth() + "-" + defaultStart.getDate();
     let startDateField = $('#startDate');
 
-    console.log(startDateField.val());
+    //console.log(startDateField.val());
     document.querySelector("#startDate").value = defaultStart.toISOString().substr(0,10);
-    console.log(startDateField.val());
+    //console.log(startDateField.val());
     //console.log(formattedDefaultStart);
 
-    // $('#endDate').val(defaultEnd);
+    document.querySelector('#endDate').value = defaultEnd.toISOString().substr(0,10);
 
     chartIt(defaultStart, defaultEnd); // Draw charts with default * data
     $('#loading').hide();
