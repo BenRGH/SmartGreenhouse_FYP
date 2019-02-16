@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="25a74d82-e32a-42ed-a4e4-19557264972a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/dbToWeb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/howitworks.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/howitworks.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -90,7 +89,7 @@
             <entry file="file://$PROJECT_DIR$/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="230">
-                  <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+                  <caret line="10" selection-start-line="10" selection-end-line="10" />
                   <folding>
                     <element signature="e#305#1144#0" />
                     <element signature="e#1213#1956#0" />
@@ -99,11 +98,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/index.ejs">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="621">
-                  <caret line="27" column="12" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+                  <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -111,13 +110,13 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="552">
+                <state relative-caret-position="1173">
                   <caret line="51" selection-start-line="51" selection-end-line="51" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c5cefd10-f890-402a-b51c-c8f5bfa01648/console.sql">
               <provider selected="true" editor-type-id="text-editor">
                 <state>
@@ -130,7 +129,7 @@
             <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="69">
-                  <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+                  <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
                 </state>
               </provider>
             </entry>
@@ -138,12 +137,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="497" selection-start-line="497" selection-end-line="497" />
+                <state relative-caret-position="970">
+                  <caret line="445" column="31" lean-forward="true" selection-start-line="445" selection-start-column="31" selection-end-line="445" selection-end-column="31" />
                   <folding>
                     <element signature="e#456#1581#0" />
                     <element signature="e#1625#2753#0" />
@@ -154,17 +153,25 @@
                     <element signature="e#6726#8006#0" />
                     <element signature="e#8048#9354#0" />
                     <element signature="e#9398#10714#0" />
-                    <element signature="e#10771#15856#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/howitworks.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="458">
+                <state relative-caret-position="627">
                   <caret line="53" column="147" selection-start-line="53" selection-start-column="147" selection-end-line="53" selection-end-column="147" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1794">
+                  <caret line="99" column="51" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
                 </state>
               </provider>
             </entry>
@@ -214,8 +221,8 @@
         <option value="$PROJECT_DIR$/views/bits/foot.ejs" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/public/javascripts/dbToWeb.js" />
         <option value="$PROJECT_DIR$/views/howitworks.ejs" />
+        <option value="$PROJECT_DIR$/public/javascripts/dbToWeb.js" />
       </list>
     </option>
   </component>
@@ -372,8 +379,8 @@
     <list>
       <item itemvalue="Node.js.app.js" />
       <item itemvalue="Node.js.www" />
-      <item itemvalue="Python.main with python" />
       <item itemvalue="Node.js.ide-scripting.js" />
+      <item itemvalue="Python.main with python" />
     </list>
     <recent_temporary>
       <list>
@@ -422,17 +429,18 @@
       <workItem from="1549727884810" duration="737000" />
       <workItem from="1549805020557" duration="944000" />
       <workItem from="1550070714051" duration="10683000" />
+      <workItem from="1550331415607" duration="336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154993000" />
+    <option name="totallyTimeSpent" value="155329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78152066" visible="true" weight="0.081478536" />
-      <window_info id="Structure" order="1" sideWeight="0.2184793" side_tool="true" visible="true" weight="0.081478536" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7805582" visible="true" weight="0.081478536" />
+      <window_info id="Structure" order="1" sideWeight="0.21944177" side_tool="true" visible="true" weight="0.081478536" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
@@ -553,28 +561,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2277">
-          <caret line="99" column="51" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#305#1144#0" />
-            <element signature="e#1213#1956#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -585,10 +575,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/bits/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#305#1144#0" />
+            <element signature="e#1213#1956#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/howitworks.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="53" column="147" selection-start-line="53" selection-start-column="147" selection-end-line="53" selection-end-column="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1794">
+          <caret line="99" column="51" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/dbToWeb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="497" selection-start-line="497" selection-end-line="497" />
+        <state relative-caret-position="970">
+          <caret line="445" column="31" lean-forward="true" selection-start-line="445" selection-start-column="31" selection-end-line="445" selection-end-column="31" />
           <folding>
             <element signature="e#456#1581#0" />
             <element signature="e#1625#2753#0" />
@@ -599,22 +642,7 @@
             <element signature="e#6726#8006#0" />
             <element signature="e#8048#9354#0" />
             <element signature="e#9398#10714#0" />
-            <element signature="e#10771#15856#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/bits/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -622,27 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="12" lean-forward="true" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/howitworks.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="53" column="147" selection-start-line="53" selection-start-column="147" selection-end-line="53" selection-end-column="147" />
         </state>
       </provider>
     </entry>

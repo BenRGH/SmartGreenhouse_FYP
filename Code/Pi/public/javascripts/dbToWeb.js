@@ -430,7 +430,7 @@ $(document).ready(function() {
             let dateSoil = [];
             for (let i in sensorDB){
                 // more of the same but for soil
-                dateSoil.push({x: sensorDB[i].dtime, y: (sensorDB[i].soil/1023)*100 })
+                dateSoil.push({x: sensorDB[i].dtime, y: 100-((sensorDB[i].soil/1023)*100) })
             }
 
             console.log(dateSoil); // testing
