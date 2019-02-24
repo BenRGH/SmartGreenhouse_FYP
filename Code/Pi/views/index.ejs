@@ -61,6 +61,9 @@
         </div>
         <button type="button" class="btn btn-outline-primary" id="dateRangeBtn">Go</button>
       </form>
+      <div class="row justify-content-md-center">
+        <button type="button" class="btn btn-outline-primary col-6 closeWindowBtn">CLOSE</button>
+      </div>
     </div>
 
     <div class="container" id="settingsWindow">
@@ -116,7 +119,10 @@
 
           </div>
         </div>
-        <button type="submit" class="btn btn-outline-primary row" id="applyProfileBtn">APPLY</button>
+        <div class="row">
+          <button type="submit" class="btn btn-outline-primary col-6" id="applyProfileBtn">APPLY</button>
+          <button type="button" class="btn btn-outline-primary col-6 closeWindowBtn">CLOSE</button>
+        </div>
       </form>
     </div>
 
@@ -140,32 +146,32 @@
       </div>
 
       <div class="row" id="displayTypeContainer">
-        <div class="col-2">
+        <div class="col-4">
           Display:
-          <div id="gridDisplayBtn" class="divAsBtn">
+          <div id="gridDisplayBtn">
             <i class="fas fa-th-large"></i>
           </div>
           <div id="listDisplayBtn" class="divAsBtn">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrows-alt-h"></i>
           </div>
         </div>
       </div>
 
       <div class="fluid-container" id="charts">
         <div class="statsContainer row">
-          <div class="col-md-6">
+          <div class="col-md-6 colResize">
             <canvas id="tempStats"></canvas>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 colResize">
             <canvas id="humidStats"></canvas>
           </div>
 
         </div>
         <div class="statsContainer row">
-          <div class="col-md-6">
+          <div class="col-md-6 colResize">
             <canvas id="soilStats"></canvas>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 colResize">
             <canvas id="lightStats"></canvas>
           </div>
         </div>

@@ -601,9 +601,37 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }); // Allows tooltips to be shown on hover
 
+    $('#listDisplayBtn').click(function () {
+        let listDisplayBtn = $('#listDisplayBtn');
+        if(listDisplayBtn.has(".divAsBtn")){
+            $('#gridDisplayBtn').addClass("divAsBtn"); // so it doesn't appear as a btn
+            listDisplayBtn.removeClass("divAsBtn");
+            $('.statsContainer').css("display","block"); // it's normally flex
+            $('.colResize').removeClass("col-md-6"); // add this back after
+        }
+    });
+
+    $('#gridDisplayBtn').click(function () {
+        let gridDisplayBtn = $('#gridDisplayBtn');
+        if(gridDisplayBtn.has(".divAsBtn")){
+            $('#listDisplayBtn').addClass("divAsBtn"); // so it doesn't appear as a btn
+            gridDisplayBtn.removeClass("divAsBtn");
+            $('.statsContainer').css("display","flex");
+            $('.colResize').addClass("col-md-6");
+        }
+    });
+
     $('#applyProfileBtn').click(function(){
         // Do data validation then send to db
-    })
+
+    });
+
+    $('.closeWindowBtn').click(function () {
+        // Change nothing and hide windows, same as event listener above
+        $('#contextWindow').css("display", "none");
+        $('#settingsWindow').css("display", "none");
+        $('main').removeClass("blur");
+    });
 });
 
 
