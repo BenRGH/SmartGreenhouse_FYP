@@ -1,4 +1,5 @@
 // Ben Rose 2018
+
 $(document).ready(function() {
 
     // Init empty charts
@@ -491,20 +492,15 @@ $(document).ready(function() {
         // Do this
     }
 
-    // old '2019-01-01T00:00:00.000Z'
     let defaultStart = new Date(); // By default this is today
     defaultStart.setDate(defaultStart.getDate() - 3);  // 3 days before today
     let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
 
     // Set the values in the input field so the above is global changing
-    //let formattedDefaultStart = defaultStart.getFullYear() + "-" + defaultStart.getMonth() + "-" + defaultStart.getDate();
     let startDateField = $('#startDate');
 
-    //console.log(startDateField.val());
+    // Sets the input fields to the default start and end values
     document.querySelector("#startDate").value = defaultStart.toISOString().substr(0,10);
-    //console.log(startDateField.val());
-    //console.log(formattedDefaultStart);
-
     document.querySelector('#endDate').value = defaultEnd.toISOString().substr(0,10);
 
     chartIt(defaultStart, defaultEnd); // Draw charts with default * data
@@ -516,6 +512,31 @@ $(document).ready(function() {
     // } catch (e) {
     //     console.error(e);
     // }
+
+    $('#revealContext').click(function () {
+        // reveals the query window and blurs background
+        $('#contextWindow').css("display", "block");
+        $('main').addClass("blur");
+    });
+
+    $('#revealSettings').click(function () {
+        // reveals the settings window and blurs background
+        $('#settingsWindow').css("display", "block");
+        $('main').addClass("blur");
+    });
+
+    document.addEventListener('mouseup',function (e) {
+        // Unfortunately this doesn't work nicely with jquery
+        let contextWindow = document.getElementById('contextWindow');
+        let settingsWindow = document.getElementById('settingsWindow');
+
+        if(!(contextWindow.contains(e.target)||settingsWindow.contains(e.target))){
+            // sneaky way to hide the windows if there's a click outside of them
+            $('#contextWindow').css("display", "none");
+            $('#settingsWindow').css("display", "none");
+            $('main').removeClass("blur");
+        }
+    });
 
     $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
         let rawStartDate = new Date($('#startDate').val());
@@ -547,8 +568,42 @@ $(document).ready(function() {
         remakeCharts(); // Have to wipe the instance before making a new one
         chartIt(startDate, endDate); // Make charts with new dataset
 
+        $('#contextWindow').css("display", "none");
+        $('#settingsWindow').css("display", "none");
+        $('main').removeClass("blur");
+
     });
 
+    $('#profileSelect').change(function() {
+        let profileCustomMenu = $('#profileCustomMenu');
+        switch ($('#profileSelect').val()) {
+            case 'Normal':
+                profileCustomMenu.hide();
+                break;
+            case 'Hot':
+                profileCustomMenu.hide();
+                break;
+            case 'Cold':
+                profileCustomMenu.hide();
+                break;
+            case 'Normal + More Water':
+                profileCustomMenu.hide();
+                break;
+            case 'Normal + More Fan':
+                profileCustomMenu.hide();
+                break;
+            case 'Customized':
+                profileCustomMenu.show();
+                // Reveal the customization menu on this profile being selected
+                break;
+        }
+    });
+
+    $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }); // Allows tooltips to be shown on hover
+
+    $('#applyProfileBtn').click(function(){
+        // Do data validation then send to db
+    })
 });
 
 

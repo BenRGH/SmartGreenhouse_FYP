@@ -14,7 +14,7 @@
       <ObjectId>16392</ObjectId>
       <StateNumber>556</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>14105</IntrospectionStateNumber>
+      <IntrospectionStateNumber>18874</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -75,7 +75,7 @@
       <StateNumber>347</StateNumber>
       <Owner>postgres</Owner>
       <IntrospectionTimestamp>2018-12-09.17:09:22.258</IntrospectionTimestamp>
-      <IntrospectionStateNumber>14106</IntrospectionStateNumber>
+      <IntrospectionStateNumber>18875</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -135,65 +135,113 @@
       <SchemaName>pg_catalog</SchemaName>
       <SchemaId>11</SchemaId>
     </extension>
-    <table id="20" parent="12" name="sensors">
+    <table id="20" parent="12" name="profile">
+      <ObjectId>24584</ObjectId>
+      <Comment>Stores the current values for automation</Comment>
+      <Owner>pi</Owner>
+      <StateNumber>18872</StateNumber>
+    </table>
+    <table id="21" parent="12" name="sensors">
       <ObjectId>16402</ObjectId>
       <Owner>pi</Owner>
       <StateNumber>1567</StateNumber>
     </table>
-    <table id="21" parent="12" name="weather">
+    <table id="22" parent="12" name="weather">
       <ObjectId>16454</ObjectId>
       <Owner>pi</Owner>
       <StateNumber>14104</StateNumber>
     </table>
-    <column id="22" parent="20" name="soil">
+    <column id="23" parent="20" name="profilename">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="24" parent="20" name="light">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="25" parent="20" name="lightdelay">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="26" parent="20" name="fan">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="27" parent="20" name="fandelay">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="28" parent="20" name="pumpamount">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="29" parent="20" name="pumpdelay">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>18872</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="30" parent="21" name="soil">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>1563</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="23" parent="20" name="temp">
+    <column id="31" parent="21" name="temp">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>1564</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="24" parent="20" name="humid">
+    <column id="32" parent="21" name="humid">
       <Position>4</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>1565</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="25" parent="20" name="l1">
+    <column id="33" parent="21" name="l1">
       <Position>5</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>1566</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="26" parent="20" name="l2">
+    <column id="34" parent="21" name="l2">
       <Position>6</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>1567</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="27" parent="20" name="dtime">
+    <column id="35" parent="21" name="dtime">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <StateNumber>960</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="28" parent="21" name="dtime">
+    <column id="36" parent="22" name="dtime">
       <Position>1</Position>
       <DataType>timestamp|0s</DataType>
       <StateNumber>1907</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="29" parent="21" name="temp">
+    <column id="37" parent="22" name="temp">
       <Position>2</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>1907</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="30" parent="21" name="humidity">
+    <column id="38" parent="22" name="humidity">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>14104</StateNumber>

@@ -17,7 +17,7 @@ h2{
 }
 
 a {
-  color: #00b7ff;
+  color: #e06436;
 }
 
 [role="main"], main {
@@ -25,7 +25,7 @@ a {
 }
 
 header{
-  color: #1e1e1e;
+  color: #162446;
 }
 
 #navbarHeader{
@@ -39,6 +39,27 @@ header{
   /*padding: 2em;*/
 }
 
+#profileCustomMenu{
+  display: none; /* this is until customized profile is chosen */
+
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+  -ms-animation: fadein 1s; /* Internet Explorer */
+  -o-animation: fadein 1s; /* Opera < 12.1 */
+  animation: fadein 1s;
+}
+
+#profileInfo{
+  font-size: 2em;
+  padding-left: 1em;
+  display: inline-block;
+  cursor: help;
+}
+
+#applyProfile{
+  width: 100%;
+}
+
 .statsContainer{
   width: 100%;
 }
@@ -48,8 +69,103 @@ header{
   display: none;
 }
 
-input{
+#menu{
+  height: 4em;
+  background-color: #162446;
+  color: #fcfcfc;
+  font-size: 2em;
+  text-align: center;
+  display:flex;
+}
 
+#revealContext{
+  padding: 1.2em 0 1em 0;
+  height: 100%;
+  width: 100%;
+}
+
+#revealContext:hover{
+  background-color: #fcfcfc;
+  outline: #41858e 2px;
+  color: #41858e;
+  -webkit-box-shadow: inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  box-shadow:         inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  cursor: pointer;
+}
+
+#revealSettings{
+  padding: 1.2em 0 1em 0;
+  height: 100%;
+  width: 100%;
+}
+
+#revealSettings:hover{
+  background-color: #fcfcfc;
+  outline: #41858e 2px;
+  color: #41858e;
+  -webkit-box-shadow: inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  box-shadow:         inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
+  cursor: pointer;
+}
+
+#contextWindow{
+  display: none;
+  background-color: #fcfcfc;
+  outline: #162446 5px solid;
+  position: absolute;
+  padding: 2em;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  height: 20em;
+  width: 40em;
+}
+
+#settingsWindow{
+  display: none;
+  background-color: #fcfcfc;
+  outline: #162446 5px solid;
+  position: absolute;
+  padding: 2em;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  height: 40em;
+  width: 30em;
+}
+
+.blur{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+#displayTypeContainer{
+  margin: 1em 0 1em 0;
+  font-size: 2em;
+
+}
+
+.divAsBtn{
+  color: #e06436;
+  display: inline;
+}
+
+.divAsBtn:hover{
+  cursor: pointer;
+  color: #41858e;
+}
+
+#charts{
+  padding-top: 3em;
+  background-color: #fcfcfc;
 }
 
 #dateRangeSelector{
@@ -61,6 +177,16 @@ input{
   /*width: 4em;*/
 }
 
+#rawDataTable{
+  /*min-height: 200em;*/
+  /*width: 100%;*/
+}
+
+.tabulator-header{
+  height: 2em;
+}
+
+
 :root {
   --jumbotron-padding-y: 3rem;
 }
@@ -69,7 +195,9 @@ input{
   padding-top: var(--jumbotron-padding-y);
   padding-bottom: var(--jumbotron-padding-y);
   margin-bottom: 0;
-  background-color: #fff;
+  background-color: #fcfcfc;
+  color: #162446;
+  border-radius: 0;
 }
 @media (min-width: 768px) {
   .jumbotron {

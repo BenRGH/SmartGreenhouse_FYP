@@ -6,7 +6,7 @@
 
   <body>
     <header>
-      <div class="collapse bg-light" id="navbarHeader">
+      <div class="collapse bg-light fixed-top" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
@@ -40,97 +40,118 @@
       </div>
     </header>
 
+    <div class="container" id="contextWindow">
+      <h2>
+        Query A Selected Range Of Data
+      </h2>
+      <p>This loads the database records for the smart greenhouse sensors and weather data. Use the query selection
+        tool below to refine the data shown in the graphs.</p>
+      <form id="dateRangeSelector" class="container">
+        <div class="form-group row">
+          <label class="col-md-4" for="startTime startDate">Start:</label>
+          <input class="col-md-4" type="time" id="startTime" name="startTimeRange" value="00:00">
+          <input class="col-md-4" type="date" id="startDate" name="startDateRange">
+          <!--value="2019-01-01"-->
+        </div>
+        <div class="form-group row">
+          <label class="col-md-4" for="endTime endDate">End:</label>
+          <input class="col-md-4" type="time" id="endTime" name="endTimeRange" value="00:00">
+          <input class="col-md-4" type="date" id="endDate" name="endDateRange">
+          <!--value="2050-01-02"-->
+        </div>
+        <button type="button" class="btn btn-outline-primary" id="dateRangeBtn">Go</button>
+      </form>
+    </div>
+
+    <div class="container" id="settingsWindow">
+      <h2>Settings</h2>
+      <form>
+        <div class="form-group">
+          <label for="profileSelect">Automation Profile</label>
+          <div class="row">
+            <select class="form-control form-control-sm col-6" id="profileSelect">
+              <option>Normal</option>
+              <option>Hot</option>
+              <option>Cold</option>
+              <option>Normal + More Water</option>
+              <option>Normal + More Fan</option>
+              <option>Customized</option>
+            </select>
+            <i tabindex="0" data-toggle="tooltip" data-placement="right" title="Normal: Waters once a day, fans blow for 15m every 4h, lights on for 16h. Hot: Waters twice a day, fans blow for 1h every 4h, lights on for 10h. Cold: Waters once every 2 days, fans blow for 15m every 8h, lights on for 20h. Normal + More Water: Same as normal but waters twice a day. Normal + More Fan: Same as normal but fans blow for 1h every 4h. Customized: Configure individual values yourself." id="profileInfo" class="far fa-question-circle"></i>
+          </div>
+          <div id="profileCustomMenu">
+            <label for="wateringFreqIn">Watering Frequency Per Day</label>
+            <div class="row">
+              <select class="form-control form-control-sm col-4" id="wateringFreqIn">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+            <label for="fanFreqIn">Dehumidifying Frequency Per Day</label>
+            <div class="row">
+              <select class="form-control form-control-sm col-4" id="fanFreqIn">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+            <label for="lightFreqIn">Light Frequency Per Day</label>
+            <div class="row">
+              <select class="form-control form-control-sm col-4" id="lightFreqIn">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary row" id="applyProfileBtn">APPLY</button>
+      </form>
+    </div>
+
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading"><%= title %></h1>
-          <p class="lead text-muted">
+          <p class="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor eros, efficitur at mi vel, consequat mollis ligula. Aenean blandit magna sed magna finibus hendrerit. Sed sollicitudin semper tincidunt. Donec consectetur mi scelerisque, pulvinar urna sit amet, eleifend lorem. Morbi gravida ex ipsum, a laoreet tortor scelerisque et.
           </p>
         </div>
       </section>
 
-      <div class="container">
-        <div class="row justify-content-md-center bg-light box-shadow">
-          <div id="contextContainer" class="col-6">
-            <h2>
-              Context Selector
-            </h2>
-            <p>Database records for the smart greenhouse sensors and weather data. Use the query selection
-              tool below to refine the data shown. Live statistics can be found at the bottom of this
-              page.</p>
-            <form id="dateRangeSelector" class="container">
-              <h2>Query Date Range</h2>
-              <div class="form-group row">
-                <label class="col-md-4" for="startTime startDate">Start:</label>
-                <input class="col-md-4" type="time" id="startTime" name="startTimeRange" value="00:00">
-                <input class="col-md-4" type="date" id="startDate" name="startDateRange">
-                <!--value="2019-01-01"-->
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4" for="endTime endDate">End:</label>
-                <input class="col-md-4" type="time" id="endTime" name="endTimeRange" value="00:00">
-                <input class="col-md-4" type="date" id="endDate" name="endDateRange">
-                <!--value="2050-01-02"-->
-              </div>
-              <button type="button" class="btn btn-outline-primary" id="dateRangeBtn">Go</button>
-            </form>
-          </div>
-          <div id="manualAutoVals" class="col-6">
-            <h2>Manual Settings</h2>
-            <form>
-              <div class="form-group">
-                <label for="wateringFreqIn">Watering Frequency Per Day</label>
-                <div class="row">
-                  <select class="form-control form-control-sm col-6" id="wateringFreqIn">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                  </select>
-                  <button type="button" class="btn btn-outline-primary col-4">Apply</button>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="fanFreqIn">Dehumidifying Frequency Per Day</label>
-                <div class="row">
-                  <select class="form-control form-control-sm col-6" id="fanFreqIn">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                  </select>
-                  <button type="button" class="btn btn-outline-primary col-4">Apply</button>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="lightFreqIn">Light Frequency Per Day</label>
-                <div class="row">
-                  <select class="form-control form-control-sm col-6" id="lightFreqIn">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                  </select>
-                  <button type="button" class="btn btn-outline-primary col-4">Apply</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div class="fluid-container justify-content-md-center" id="menu">
+        <div id="revealContext">Query</div>
+        <div id="revealSettings">Settings</div>
       </div>
 
       <div id="loading" class="row justify-content-md-center bg-light box-shadow">
         Loading...
       </div>
 
-      <div class="fluid-container">
+      <div class="row" id="displayTypeContainer">
+        <div class="col-2">
+          Display:
+          <div id="gridDisplayBtn" class="divAsBtn">
+            <i class="fas fa-th-large"></i>
+          </div>
+          <div id="listDisplayBtn" class="divAsBtn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="fluid-container" id="charts">
         <div class="statsContainer row">
           <div class="col-md-6">
             <canvas id="tempStats"></canvas>
@@ -154,5 +175,6 @@
     </main>
 
   <% include bits/foot.ejs %>
+  <script src="/javascripts/dbToWeb.js"></script>
   </body>
 </html>

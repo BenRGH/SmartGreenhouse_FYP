@@ -9,8 +9,6 @@ import serial, time, sys, psycopg2, datetime, pyowm
 
 owm = pyowm.OWM('2ba12dc7a5682ea8eb7831e1b996fe5d') # API Key
 
-pid = "/tmp/sensorscript.pid"  # needed for daemonizing
-
 
 def readFromSerial(port):
     # This opens up the local serial monitor ports and communicates with the arduinos,
@@ -64,7 +62,7 @@ def formattedRead():
 # Used to get all values of a table in DB
 def getAllDB(table):
     # Database connection goodness
-    conn = psycopg2.connect('dbname=test user=pi') # !rename to actual!
+    conn = psycopg2.connect('dbname=test user=pi')
     cur = conn.cursor()
 
     query = "SELECT * FROM " + table
@@ -111,6 +109,27 @@ def addWeather():
     cur.close()
     conn.close()
 
+def lightTiming(light,delay):
+    # light is int, 0=left, 1=right and 2=both
+    # delay is the duration light should be on in ms
+
+    # send command to control arduino -> relay
+    return 1
+
+def fanTiming(fan,delay):
+    # sets the delay between the fans being on, in ms
+    # fan can be 0=first fan, 1=second fan and 2=both
+    # this could be calculated in main on as an hourly timing
+
+    # send command to control arduino -> motor shield
+    return 1
+
+def pumpTiming(amount,delay):
+    # same as above, VERY IMPORTANT TO NOT OVERDO!!!
+    # amount is just the time spent watering in ms, keep this low
+
+    # send command to control arduino -> motor shield
+    return 1
 
 def main():
     while 1:
@@ -134,6 +153,19 @@ def main():
             addWeather()  # Add current temp to db
             # LIMITED TO 60 TIMES A MINUTE!
 
+
+            # Now we have the sensor values, we run them through the thresholds of automation,
+            # the limits are defined by the chosen profile
+            profileData = getAllDB("profile")[1]
+
+            lightTiming(profileData['light'], profileData['lightdelay'])
+            fanTiming(profileData['fan'], profileData['fandelay'])
+            pumpTiming(profileData['pumpamount'], profileData['pumpdelay'])
+
+
+
+
+
         except Exception:
             print("it couldn't get a sensor val")
             pass
@@ -142,13 +174,9 @@ def main():
 
     return "this shouldn't appear anywhere"
 
-# to daemonize:
-# nohup python main.py &
-# to check if daemon is running:
-# ps ax | grep main.py
-# to stop daemon:
-# sudo kill -9 process_pid
 
+# to daemonize:
+# pm2 start main.py --watch
 
 if __name__ == "__main__":
     main()
