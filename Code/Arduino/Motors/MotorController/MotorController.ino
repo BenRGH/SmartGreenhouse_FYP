@@ -1,3 +1,9 @@
+// Ben 2019, Partially composed of public code for motor control and shift registry
+// This talks over serial to the python script and accepts commands for motors & lights.
+// Runs on port /dev/ttyACM0
+// BITS SOMETIMES GET LOST! SEND EXTRA 0'S BEFORE COMMANDS!
+
+// Motors & Pump
 #define MOTORLATCH 12 
 #define MOTORCLK 4 
 #define MOTORENABLE 7 
@@ -10,21 +16,148 @@
 #define BRAKE 3 
 #define RELEASE 4 
 
+// Light relay
+#define LIGHT1 40
+#define LIGHT2 41
+
+// State vars
+bool light1on = false;
+bool light2on = false;
+bool fan1on = false;
+bool fan2on = false;
+bool pumpOn = false;
+
+
 void setup() {
   Serial.begin(9600);
-  Serial.println("Simple Adafruit Motor Shield sketch"); 
+  Serial.println("GO"); // Might cause issues with comms
 
+  // Make the lights controllable
+  pinMode(LIGHT1, OUTPUT);
+  pinMode(LIGHT2, OUTPUT);
+  // turn off lights
+  digitalWrite(LIGHT1, LOW);
+  digitalWrite(LIGHT2, LOW);
+  
 }
 
 void loop() {
-  motor(1, FORWARD, 255);
-  delay(2000);
-  // Be friendly to the motor: stop it before reverse. 
-  motor(1, RELEASE, 0);
-  delay(100);
-  motor(1, BACKWARD, 128);
-  delay(2000);
-  motor(1, RELEASE, 0);
+  // testing
+  
+//  motor(1, FORWARD, 255);
+//  delay(2000);
+//  // Be friendly to the motor: stop it before reverse. 
+//  motor(1, RELEASE, 0);
+//  delay(100);
+//  motor(1, BACKWARD, 128);
+//  delay(2000);
+//  motor(1, RELEASE, 0);
+
+  
+  // First step is to get profile data from pi,
+  // commands are received as int's for simplicity, they match below:
+  // -----lights------
+  // 00 = light 1 on
+  // 01 = light 2 on
+  // 02 = light 1 off
+  // 03 = light 2 off
+  // -----fans--------
+  // 10 = fan 1 on
+  // 11 = fan 2 on
+  // 12 = fan 1 off
+  // 13 = fan 2 off
+  // -----pump--------
+  // 20 = pump on for 1s
+  // 21 = pump on for 2s
+  // 22 = pump on for 3s
+  // (more is dangerous territory)
+  
+  if (Serial.available()){
+    int command = Serial.parseInt();
+    switch(command){
+      case 0:
+        // light 1 on
+        if (!light1on){
+          digitalWrite(LIGHT1, HIGH);
+          Serial.println("light 1 on");
+          light1on = true;
+        }
+        break;
+      case 1:
+        // light 2 on
+        if (!light2on){
+          digitalWrite(LIGHT2, HIGH);
+          Serial.println("light 2 on");
+          light2on = true;
+        }
+        break;
+      case 2:
+        // light 1 off
+        if(light1on){
+          digitalWrite(LIGHT1, LOW);
+          Serial.println("light 1 off");
+          light1on = false;
+        }
+        break;
+      case 3:
+        // light 2 off
+        if(light2on){
+          digitalWrite(LIGHT2, LOW);
+          Serial.println("light 2 off");
+          light2on = false;
+        }
+        break;
+      case 10:
+        // fan 1 on
+        if (!fan1on){
+          // MAKE SURE TO STOP BEFORE STARTING AGAIN!
+          motor(1, FORWARD, 255);
+          Serial.println("fan 1 on");
+          fan1on = true;
+        }
+        break;
+      case 11:
+        // fan 2 on
+        if (!fan2on){
+          // MAKE SURE TO STOP BEFORE STARTING AGAIN!
+          motor(2, FORWARD, 255);
+          Serial.println("fan 2 on");
+          fan2on = true;
+        }
+        break;
+      case 12:
+        // fan 1 off
+        if (fan1on){
+          motor(1, RELEASE, 0);
+          Serial.println("fan 1 off");
+          fan1on = false;
+        }
+        break;
+      case 13:
+        // fan 2 off
+        if (fan2on){
+          motor(2, RELEASE, 0);
+          Serial.println("fan 2 off");
+          fan2on = false;
+        }
+        break;
+      case 20:
+        // pump on for 1s
+        // rewrite below for this to work!!!
+        break;
+      case 21:
+        // pump on for 2s
+        break;
+      case 22:
+        // pump on for 3s
+        break;
+      default:
+        //ask again?
+        break;
+    }
+  }
+  
+
   
 }
 
