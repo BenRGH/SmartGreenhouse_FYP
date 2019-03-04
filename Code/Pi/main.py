@@ -7,7 +7,10 @@
 
 import serial, time, sys, psycopg2, datetime, pyowm
 
-owm = pyowm.OWM('2ba12dc7a5682ea8eb7831e1b996fe5d') # API Key
+owm = pyowm.OWM('2ba12dc7a5682ea8eb7831e1b996fe5d')  # API Key
+
+# global counter for main
+ticks = 0
 
 
 def readFromSerial(port):
@@ -60,12 +63,11 @@ def formattedRead():
 
 
 # Used to get all values of a table in DB
-def getAllDB(table):
+def getAllDB(query):
     # Database connection goodness
     conn = psycopg2.connect('dbname=test user=pi')
     cur = conn.cursor()
 
-    query = "SELECT * FROM " + table
     cur.execute(query)  # run query
     tableData = cur.fetchall()
 
@@ -109,68 +111,181 @@ def addWeather():
     cur.close()
     conn.close()
 
-def lightTiming(light,delay):
+
+def lightOn(light):
     # light is int, 0=left, 1=right and 2=both
-    # delay is the duration light should be on in ms
+
+    # // -----lights------
+    # // 00 = light 1 on
+    # // 01 = light 2 on
+    # // 02 = light 1 off
+    # // 03 = light 2 off
 
     # send command to control arduino -> relay
+    with serial.Serial('/dev/ttyACM0', 9600, timeout=5) as ser:
+        if light == 0:
+            ser.write(b'0000')  # send light 1 on command (with extra 0's for padding)
+        elif light == 1:
+            ser.write(b'0001')  # send light 2 on command (with extra 0's for padding)
+        elif light == 2:
+            ser.write(b'0000')  # send light 2 on
+            time.sleep(1)
+            ser.write(b'0001')  # send light 2 on
+
     return 1
 
-def fanTiming(fan,delay):
-    # sets the delay between the fans being on, in ms
-    # fan can be 0=first fan, 1=second fan and 2=both
-    # this could be calculated in main on as an hourly timing
+
+def lightOff(light):
+    # light is int, 0=left, 1=right and 2=both
+
+    # send command to control arduino -> relay
+    with serial.Serial('/dev/ttyACM0', 9600, timeout=5) as ser:
+        if light == 0:
+            ser.write(b'0002')  # send light 1 off command (with extra 0's for padding)
+        elif light == 1:
+            ser.write(b'0003')  # send light 2 off command (with extra 0's for padding)
+        elif light == 2:
+            ser.write(b'0002')  # send light 2 off
+            time.sleep(1)
+            ser.write(b'0003')  # send light 2 off
+
+
+def fanOn(fan):
+    # fan is 0=first fan, 1=second fan and 2=both
+
+    # // -----fans--------
+    # // 10 = fan 1 on
+    # // 11 = fan 2 on
+    # // 12 = fan 1 off
+    # // 13 = fan 2 off
 
     # send command to control arduino -> motor shield
+    with serial.Serial('/dev/ttyACM0', 9600, timeout=5) as ser:
+        if fan == 0:
+            ser.write(b'0010')  # send fan 1 on command (with extra 0's for padding)
+        elif fan == 1:
+            ser.write(b'0011')  # send fan 2 on command (with extra 0's for padding)
+        elif fan == 2:
+            ser.write(b'0010')  # send fan 2 on
+            time.sleep(1)
+            ser.write(b'0011')  # send fan 2 on
+
     return 1
 
-def pumpTiming(amount,delay):
+
+def fanOff(fan):
+    # fan is 0=first fan, 1=second fan and 2=both
+
+    # send command to control arduino -> motor shield
+    with serial.Serial('/dev/ttyACM0', 9600, timeout=5) as ser:
+        if fan == 0:
+            ser.write(b'0012')  # send fan 1 off command (with extra 0's for padding)
+        elif fan == 1:
+            ser.write(b'0013')  # send fan 2 off command (with extra 0's for padding)
+        elif fan == 2:
+            ser.write(b'0012')  # send fan 2 off
+            time.sleep(1)
+            ser.write(b'0013')  # send fan 2 off
+
+    return 1
+
+
+def pumpOn(duration):
     # same as above, VERY IMPORTANT TO NOT OVERDO!!!
     # amount is just the time spent watering in ms, keep this low
 
+    # // -----pump--------
+    # // 20 = pump on for 1s
+    # // 21 = pump on for 2s
+    # // 22 = pump on for 3s
+
     # send command to control arduino -> motor shield
+    with serial.Serial('/dev/ttyACM0', 9600, timeout=5) as ser:
+        if duration == 0:
+            ser.write(b'0020')  # send pump 1s command (with extra 0's for padding)
+        elif duration == 1:
+            ser.write(b'0021')  # send pump 2s command (with extra 0's for padding)
+        elif duration == 2:
+            ser.write(b'0022')  # send pump 3s command
     return 1
 
 def main():
+
     while 1:
-        # Check db
-        # print(getAllDB("sensors"))  # if this doesn't work then db is down
+        # This is an endless loop that iterates every 30s so that manual controls can be implemented,
+        # a counter variable exists to track time passed and run appropriate scheduled commands
 
         try:
-            sensorData = formattedRead()  # A dictionary of the latest sensor data
-
-            print(sensorData)
-
-            addToDB(
-                datetime.datetime.now(),
-                sensorData['soil'],
-                sensorData['temp'],
-                sensorData['humid'],
-                sensorData['L1'],
-                sensorData['L2']
-            )
-
-            addWeather()  # Add current temp to db
-            # LIMITED TO 60 TIMES A MINUTE!
-
-
             # Now we have the sensor values, we run them through the thresholds of automation,
             # the limits are defined by the chosen profile
-            profileData = getAllDB("profile")[1]
+            profileData = getAllDB("SELECT * FROM profile")[-1]
 
-            lightTiming(profileData['light'], profileData['lightdelay'])
-            fanTiming(profileData['fan'], profileData['fandelay'])
-            pumpTiming(profileData['pumpamount'], profileData['pumpdelay'])
+            print(profileData)
+
+            # get profile values from db
+            lightCtrl = profileData[1]
+            lightDelay = profileData[2]
+            if lightDelay <= 1:
+                print("light delay has low value, defaulting to 8h")
+                lightDelay = 8
+            fanCtrl = profileData[3]
+            fanDelay = profileData[4]
+            pumpAmount = profileData[5]
+            pumpDelay = profileData[6]
+
+            currentTimeHour = datetime.datetime.now().hour
+            currentTimeMinute = datetime.datetime.now().minute
+
+            # use delay set in db to set start and end time
+            print("light delay is " + str(lightDelay))
+            lightOnStartTime = (12 - (lightDelay//2)) % 24  # has to be in 24h format, half the delay before 12am
+            print("light starttime is " + str(lightOnStartTime))
+            lightOnEndTime = (12 + (lightDelay//2)) % 24  # half the delay past 12am
+            print("light endtime is " + str(lightOnEndTime))
+
+            # webserver should validate lightctrl, arduinos don't like confusing data
+            print("current hour is: " + str(currentTimeHour))
+            if currentTimeHour >= lightOnStartTime and currentTimeHour < (lightOnStartTime + (lightDelay//2)):
+                # time to turn on
+                lightOn(lightCtrl)
+                print("light " + str(lightCtrl) + " on")
+
+            elif currentTimeHour >= lightOnEndTime or currentTimeHour < lightOnStartTime:
+                lightOff(lightCtrl)
+                print("light " + str(lightCtrl) + " off")
+
+            # copy above for fans and pump
 
 
+            global ticks  # to access global var
+            print("ticks is currently " + str(ticks))
+            if ticks >= 20:
+                # 10 minutes should have passed
+                sensorData = formattedRead()  # A dictionary of the latest sensor data
 
+                addToDB(
+                    datetime.datetime.now(),
+                    sensorData['soil'],
+                    sensorData['temp'],
+                    sensorData['humid'],
+                    sensorData['L1'],
+                    sensorData['L2']
+                )
+
+                addWeather()  # Add current temp to db
+                # LIMITED TO 60 TIMES A MINUTE!
+
+                ticks = 0
 
 
         except Exception:
-            print("it couldn't get a sensor val")
+            print("Main loop failure, see error:")
+            print(str(Exception))
             pass
 
-        time.sleep(600)  # Update db every 10m
+        time.sleep(30)  # Each loop takes ~30s
+        ticks += 1  # increment ticks every loop
+
 
     return "this shouldn't appear anywhere"
 
