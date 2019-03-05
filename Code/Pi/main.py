@@ -223,6 +223,7 @@ def main():
             print(profileData)
 
             # get profile values from db
+            print("current profile: " + str(profileData[0]))
             lightCtrl = profileData[1]
             lightDelay = profileData[2]
             if lightDelay <= 1:
@@ -254,7 +255,7 @@ def main():
                 lightOff(lightCtrl)
                 print("light " + str(lightCtrl) + " off")
 
-            # copy above for fans and pump
+            # copy above for fans and pump if it works
 
 
             global ticks  # to access global var

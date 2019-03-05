@@ -599,6 +599,11 @@ $(document).ready(function() {
         }
     });
 
+    $('#applyProfileBtn').click(function(){
+        // Do data validation then send to db
+
+    });
+
     $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }); // Allows tooltips to be shown on hover
 
     $('#listDisplayBtn').click(function () {
@@ -619,11 +624,6 @@ $(document).ready(function() {
             $('.statsContainer').css("display","flex");
             $('.colResize').addClass("col-md-6");
         }
-    });
-
-    $('#applyProfileBtn').click(function(){
-        // Do data validation then send to db
-
     });
 
     $('.closeWindowBtn').click(function () {
