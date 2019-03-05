@@ -74,6 +74,104 @@ router.get('/wdata', async function(req,res){
     })
 });
 
+// Profile setting
+router.post('/normal', function (req,res) {
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let query = {
+        text: 'insert into profile values(\'Normal\', 2, 16, 2, 4, 1, 1)',
+    };
+
+    client.query(query, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        client.end()
+    })
+});
+router.post('/hot', function (req,res) {
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let query = {
+        text: 'insert into profile values(\'Hot\', 2, 10, 2, 10, 1, 2)',
+    };
+
+    client.query(query, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        client.end()
+    })
+});
+router.post('/cold', function (req,res) {
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let query = {
+        text: 'insert into profile values(\'Cold\', 2, 20, 2, 2, 1, 0)',
+    };
+
+    client.query(query, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        client.end()
+    })
+});
+router.post('/nw', function (req,res) {
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let query = {
+        text: 'insert into profile values(\'Normal + More Water\', 2, 16, 2, 4, 2, 1)',
+    };
+
+    client.query(query, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        client.end()
+    })
+});
+router.post('/nf', function (req,res) {
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let query = {
+        text: 'insert into profile values(\'Normal + More Fan\', 2, 16, 2, 10, 1, 1)',
+    };
+
+    client.query(query, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+        client.end()
+    })
+});
+
+
 
 // GET live values
 router.get('/live', async function(req,res){

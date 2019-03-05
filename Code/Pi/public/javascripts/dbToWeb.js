@@ -525,18 +525,18 @@ $(document).ready(function() {
         $('main').addClass("blur");
     });
 
-    document.addEventListener('mouseup',function (e) {
-        // Unfortunately this doesn't work nicely with jquery
-        let contextWindow = document.getElementById('contextWindow');
-        let settingsWindow = document.getElementById('settingsWindow');
-
-        if(!(contextWindow.contains(e.target)||settingsWindow.contains(e.target))){
-            // sneaky way to hide the windows if there's a click outside of them
-            $('#contextWindow').css("display", "none");
-            $('#settingsWindow').css("display", "none");
-            $('main').removeClass("blur");
-        }
-    });
+    // document.addEventListener('mouseup',function (e) {
+    //     // Unfortunately this doesn't work nicely with jquery
+    //     let contextWindow = document.getElementById('contextWindow');
+    //     let settingsWindow = document.getElementById('settingsWindow');
+    //
+    //     if(!(contextWindow.contains(e.target)||settingsWindow.contains(e.target))){
+    //         // sneaky way to hide the windows if there's a click outside of them
+    //         $('#contextWindow').css("display", "none");
+    //         $('#settingsWindow').css("display", "none");
+    //         $('main').removeClass("blur");
+    //     }
+    // });
 
     $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
         let rawStartDate = new Date($('#startDate').val());
@@ -599,9 +599,62 @@ $(document).ready(function() {
         }
     });
 
-    $('#applyProfileBtn').click(function(){
-        // Do data validation then send to db
+    $('#applyProfileBtn').click(function(e){
+        e.preventDefault(); // Because jquery is stupid
 
+        // Do data validation then send to db
+        let profile = $('#profileSelect').val();
+
+        if (typeof(profile) !== "string"){
+            alert("No funny business.")
+        }else{
+            switch (profile){
+                case "Normal":
+                    axios.post('/normal',{
+                        test: 'test',
+                    }).catch(function(error){
+                            console.log(error);
+                        });
+                    break;
+
+                case "Hot":
+                    axios.post('/hot',{
+                        test: 'test',
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                    break;
+
+                case "Cold":
+                    axios.post('/cold',{
+                        test: 'test',
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                    break;
+
+                case "Normal + More Water":
+                    axios.post('/nw',{
+                        test: 'test',
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                    break;
+
+                case "Normal + More Fan":
+                    axios.post('/nf',{
+                        test: 'test',
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+                    break;
+
+                case "Customized":
+                    break;
+
+
+            }
+        }
     });
 
     $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }); // Allows tooltips to be shown on hover

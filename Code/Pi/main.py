@@ -255,7 +255,26 @@ def main():
                 lightOff(lightCtrl)
                 print("light " + str(lightCtrl) + " off")
 
-            # copy above for fans and pump if it works
+
+            # Same as above but for the fans
+            # use delay set in db to set start and end time
+            print("fan delay is " + str(fanDelay))
+            fanOnStartTime = (12 - (fanDelay//2)) % 24  # has to be in 24h format, half the delay before 12am
+            print("fan starttime is " + str(fanOnStartTime))
+            fanOnEndTime = (12 + (fanDelay//2)) % 24  # half the delay past 12am
+            print("fan endtime is " + str(fanOnEndTime))
+
+            if currentTimeHour >= fanOnStartTime and currentTimeHour < (fanOnStartTime + (fanDelay//2)):
+                # time to turn on
+                fanOn(fanCtrl)
+                print("fan " + str(fanCtrl) + " on")
+
+            elif currentTimeHour >= fanOnEndTime or currentTimeHour < fanOnStartTime:
+                fanOff(fanCtrl)
+                print("fan " + str(fanCtrl) + " off")
+
+
+            # add pump control here
 
 
             global ticks  # to access global var
