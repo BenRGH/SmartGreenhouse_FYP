@@ -608,10 +608,27 @@ $(document).ready(function() {
         if (typeof(profile) !== "string"){
             alert("No funny business.")
         }else{
+            let threshTempLOWER = $('#threshTempLOWER').val();
+            let threshTempUPPER = $('#threshTempUPPER').val();
+            let threshLightLOWER = $('#threshLightLOWER').val();
+            let threshLightUPPER = $('#threshLightUPPER').val();
+            let threshSoilLOWER = $('#threshSoilLOWER').val();
+            let threshSoilUPPER = $('#threshSoilUPPER').val();
+            let threshHumidity = $('#threshHumidity').val();
+
             switch (profile){
                 case "Normal":
                     axios.post('/normal',{
-                        test: 'test',
+                        // Thresholds, server validated
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
                     }).catch(function(error){
                             console.log(error);
                         });
@@ -619,7 +636,16 @@ $(document).ready(function() {
 
                 case "Hot":
                     axios.post('/hot',{
-                        test: 'test',
+                        // Thresholds, server validated
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
                     }).catch(function(error){
                         console.log(error);
                     });
@@ -627,7 +653,16 @@ $(document).ready(function() {
 
                 case "Cold":
                     axios.post('/cold',{
-                        test: 'test',
+                        // Thresholds, server validated
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
                     }).catch(function(error){
                         console.log(error);
                     });
@@ -635,7 +670,16 @@ $(document).ready(function() {
 
                 case "Normal + More Water":
                     axios.post('/nw',{
-                        test: 'test',
+                        // Thresholds, server validated
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
                     }).catch(function(error){
                         console.log(error);
                     });
@@ -643,13 +687,45 @@ $(document).ready(function() {
 
                 case "Normal + More Fan":
                     axios.post('/nf',{
-                        test: 'test',
+                        // Thresholds, server validated
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
                     }).catch(function(error){
                         console.log(error);
                     });
                     break;
 
                 case "Customized":
+                    axios.post('/customized', {
+                        // Server manages validation, if it ain't allowed it won't work
+                        light: $('#lightCtrl').val(),
+                        lightDelay: $('#lightTiming').val(),
+                        fan: $('#fanCtrl').val(),
+                        fanDelay: $('#fanTiming').val(),
+                        pumpAmount: $('#pumpAmount').val(),
+                        pumpDelay: $('#pumpTiming').val(),
+
+                        thresholds: {
+                            tempLOWER: threshTempLOWER,
+                            tempUPPER: threshTempUPPER,
+                            lightLOWER: threshLightLOWER,
+                            lightUPPER: threshLightUPPER,
+                            soilLOWER: threshSoilLOWER,
+                            soilUPPER: threshSoilUPPER,
+                            humidity: threshHumidity,
+                        }
+
+
+                    }).catch(function(e){
+                        console.log(e);
+                    });
                     break;
 
 

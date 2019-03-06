@@ -107,7 +107,7 @@
                 <option>18h</option>
                 <option>20h</option>
               </select>
-              <div class="col-1"></div>
+              <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Choose which of the two lights should be controlled and the time they should be on per day." class="profileInfo far fa-question-circle"></i></div>
             </div>
 
             <!--FANS-->
@@ -128,7 +128,7 @@
                 <option>18h</option>
                 <option>20h</option>
               </select>
-              <div class="col-1"></div>
+              <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Choose which of the two fans should be controlled and the time they should be on per day." class="profileInfo far fa-question-circle"></i></div>
             </div>
 
             <!--PUMP-->
@@ -145,7 +145,7 @@
                 <option>2 TIMES A DAY</option>
                 <option>3 TIMES A DAY</option>
               </select>
-              <div class="col-1"></div>
+              <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Choose a watering amount and frequency per day." class="profileInfo far fa-question-circle"></i></div>
             </div>
 
 
@@ -160,11 +160,19 @@
           <div class="row form-inline">
             <div class="col-1"></div>
             <select class="form-control form-control-sm col-4" id="threshTempLOWER">
+              <option>10&deg;C</option>
+              <option>8&deg;C</option>
               <option>5&deg;C</option>
+              <option>3&deg;C</option>
+              <option>0&deg;C</option>
             </select>
             <div class="col-1 text-center">to</div>
             <select class="form-control form-control-sm col-4" id="threshTempUPPER">
+              <option>20&deg;C</option>
+              <option>23&deg;C</option>
               <option>25&deg;C</option>
+              <option>28&deg;C</option>
+              <option>30&deg;C</option>
             </select>
             <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Lower bound to upper bound for desired temperature, if this is exceeded then the fans kick into action." class="profileInfo far fa-question-circle"></i></div>
           </div>
@@ -173,11 +181,16 @@
           <div class="row form-inline">
             <div class="col-1"></div>
             <select class="form-control form-control-sm col-4" id="threshLightLOWER">
+              <option>10%</option>
               <option>15%</option>
+              <option>20%</option>
             </select>
             <div class="col-1 text-center">to</div>
             <select class="form-control form-control-sm col-4" id="threshLightUPPER">
+              <option>35%</option>
+              <option>40%</option>
               <option>45%</option>
+              <option>50%</option>
             </select>
             <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Lower bound to upper bound for desired lighting, under this the lights are turned on, over this they're turned off." class="profileInfo far fa-question-circle"></i></div>
           </div>
@@ -186,11 +199,16 @@
           <div class="row form-inline">
             <div class="col-1"></div>
             <select class="form-control form-control-sm col-4" id="threshSoilLOWER">
+              <option>50%</option>
+              <option>55%</option>
               <option>60%</option>
             </select>
             <div class="col-1 text-center">to</div>
             <select class="form-control form-control-sm col-4" id="threshSoilUPPER">
+              <option>60%</option>
               <option>65%</option>
+              <option>70%</option>
+              <option>75%</option>
             </select>
             <div class="col-1"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Lower bound to upper bound for soil moisture, if it's too dry then the pump activates, too wet and the pump is disabled." class="profileInfo far fa-question-circle"></i></div>
           </div>
@@ -200,6 +218,10 @@
             <div class="col-1"></div>
             <select class="form-control form-control-sm col-4" id="threshHumidity">
               <option>85RH</option>
+              <option>88RH</option>
+              <option>90RH</option>
+              <option>93RH</option>
+              <option>95RH</option>
             </select>
             <div class="col-6"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Upper bound for humidity, if it is exceeded then the fans are activated." class="profileInfo far fa-question-circle"></i></div>
           </div>
