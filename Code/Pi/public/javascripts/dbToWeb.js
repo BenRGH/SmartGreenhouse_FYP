@@ -8,6 +8,10 @@ $(document).ready(function() {
     const humidctx = document.getElementById("humidStats").getContext('2d');
     const soilctx = document.getElementById("soilStats").getContext('2d');
     const lightctx = document.getElementById("lightStats").getContext('2d');
+
+    // Pie/Doughnut contexts
+    const lightPieCtx = document.getElementById("lightPie").getContext('2d');
+
     // Chart instances
     let tempChart = new Chart(tempctx, {
         type: 'line',
@@ -165,6 +169,41 @@ $(document).ready(function() {
             }
         }
     });
+
+    // Pie/Doughnut instances
+    let lightPieChart;
+    loadCurrentSettings().then((current)=>{
+        let onTime = parseInt(current['lightdelay']);
+        let offTime = 24 - onTime;
+        let lightPieData = {
+            datasets: [{
+                data:[20, 4],
+                backgroundColor: [
+                    '#54ac2f',
+                    '#000027',
+                ],
+            }],
+
+            labels: [
+                'Light is on',
+                'Light is off'
+            ],
+        };
+        console.log(lightPieData);
+
+        lightPieChart = new Chart(lightPieCtx, {
+            type: 'doughnut',
+            data: lightPieData,
+            options:{
+                title: {
+                    display: true,
+                    text: 'Illumination time'
+                },
+                responsive: true,
+            }
+        });
+    });
+
 
     function remakeCharts(){
         // Clear old chart instances
@@ -333,6 +372,7 @@ $(document).ready(function() {
     }
 
     async function chartIt(startDate, endDate){
+        // Draw line charts
         try {
             // Get new data from db's
             let sdb = await axios('/sdata',{
@@ -491,9 +531,6 @@ $(document).ready(function() {
     defaultStart.setDate(defaultStart.getDate() - 3);  // 3 days before today
     let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
 
-    // Set the values in the input field so the above is global changing
-    let startDateField = $('#startDate');
-
     // Sets the input fields to the default start and end values
     document.querySelector("#startDate").value = defaultStart.toISOString().substr(0,10);
     document.querySelector('#endDate').value = defaultEnd.toISOString().substr(0,10);
@@ -530,9 +567,154 @@ $(document).ready(function() {
             });
         })
     }
-    loadCurrentSettings().then(test => {
-        console.log('test', test); // to debug
-        // insert values from test into the page
+    loadCurrentSettings().then(current => {
+        // testing
+        console.log('profile', current);
+        // console.log('profilename', current['profilename']);
+
+        let success = true;
+
+        // name, light, lightdelay, fan, fandelay, pumpamount, pumpdelay, templower, tempupper,
+        // lightlower, lightupper,  soillower, soilupper, humidity
+
+        // insert values from db into the page
+        let profile = current['profilename'];
+        $('#profileSelect').val(profile);
+
+        // import custom settings if there are any
+        if (profile === "Customized"){
+            switch (current['light']){
+                case 0:
+                    $('#lightCtrl').val("LEFT");
+                    break;
+                case 1:
+                    $('#lightCtrl').val("RIGHT");
+                    break;
+                case 2:
+                    $('#lightCtrl').val("BOTH");
+                    break;
+                default:
+                    console.log("couldn't read light val");
+                    success = false;
+            }
+            switch (current['lightdelay']){
+                case 4:
+                    $('#lightTiming').val("4h");
+                    break;
+                case 8:
+                    $('#lightTiming').val("8h");
+                    break;
+                case 10:
+                    $('#lightTiming').val("10h");
+                    break;
+                case 12:
+                    $('#lightTiming').val("12h");
+                    break;
+                case 14:
+                    $('#lightTiming').val("14h");
+                    break;
+                case 18:
+                    $('#lightTiming').val("18h");
+                    break;
+                case 20:
+                    $('#lightTiming').val("20h");
+                    break;
+                default:
+                    console.log("Couldn't read custom light timing");
+                    success = false;
+            }
+            switch (current['fan']){
+                case 0:
+                    $('#fanCtrl').val("LEFT");
+                    break;
+                case 1:
+                    $('#fanCtrl').val("RIGHT");
+                    break;
+                case 2:
+                    $('#fanCtrl').val("BOTH");
+                    break;
+                default:
+                    console.log("Couldn't read fan val");
+                    success = false;
+            }
+            switch (current['fandelay']){
+                case 4:
+                    $('#fanTiming').val("4h");
+                    break;
+                case 8:
+                    $('#fanTiming').val("8h");
+                    break;
+                case 10:
+                    $('#fanTiming').val("10h");
+                    break;
+                case 12:
+                    $('#fanTiming').val("12h");
+                    break;
+                case 14:
+                    $('#fanTiming').val("14h");
+                    break;
+                case 18:
+                    $('#fanTiming').val("18h");
+                    break;
+                case 20:
+                    $('#fanTiming').val("20h");
+                    break;
+                default:
+                    console.log("Couldn't read custom fan timing");
+                    success = false;
+            }
+            switch (current['pumpamount']){
+                case 1:
+                    $('#pumpAmount').val("BASIC");
+                    break;
+                case 3:
+                    $('#pumpAmount').val("MODERATE");
+                    break;
+                case 5:
+                    $('#pumpAmount').val("EXCESSIVE");
+                    break;
+                default:
+                    console.log("Couldn't read custom pump val");
+                    success = false;
+            }
+            switch (current['pumpdelay']){
+                case 1:
+                    $('#pumpTiming').val("1 TIMES A DAY");
+                    break;
+                case 2:
+                    $('#pumpTiming').val("2 TIMES A DAY");
+                    break;
+                case 3:
+                    $('#pumpTiming').val("3 TIMES A DAY");
+                    break;
+                default:
+                    console.log("Couldn't read pump timings from db");
+                    success = false;
+            }
+        }
+
+
+        // thresholds
+        $('#threshTempLOWER').val(current['templower'] + "°C");
+        $('#threshTempUPPER').val(current['tempupper'] + "°C");
+        $('#threshLightLOWER').val(current['lightlower'] + "%");
+        $('#threshLightUPPER').val(current['lightupper'] + "%");
+        $('#threshSoilLOWER').val(current['soillower'] + "%");
+        $('#threshSoilUPPER').val(current['soilupper'] + "%");
+        $('#threshHumidity').val(current['humidity'] + "RH");
+
+        // confirm loaded from db
+        let successDiv = $('#settingsSuccess');
+        if (success){
+            successDiv.addClass('alert-success');
+            successDiv.text("Successfully imported current settings!");
+            console.log("load success");
+
+        } else {
+            successDiv.addClass('alert-danger');
+            successDiv.text("Failed to import current settings, check your connection.");
+            console.log("load failure");
+        }
 
     });
 
@@ -541,12 +723,14 @@ $(document).ready(function() {
     $('#revealContext').click(function () {
         $('#contextWindow').css("display", "block");
         $('main').addClass("blur");
+        $('.jumbotron').addClass("blur");
     });
 
     // reveals the settings window and blurs background
     $('#revealSettings').click(function () {
         $('#settingsWindow').css("display", "block");
         $('main').addClass("blur");
+        $('.jumbotron').addClass("blur");
     });
 
     document.addEventListener('mouseup',function (e) {
@@ -559,6 +743,7 @@ $(document).ready(function() {
             $('#contextWindow').css("display", "none");
             $('#settingsWindow').css("display", "none");
             $('main').removeClass("blur");
+            $('.jumbotron').removeClass("blur");
         }
     });
 
@@ -622,6 +807,11 @@ $(document).ready(function() {
                 // Reveal the customization menu on this profile being selected
                 break;
         }
+
+        let successDiv = $('#settingsSuccess');
+        successDiv.removeClass('alert-success');
+        successDiv.removeClass('alert-danger');
+        successDiv.text("");
     });
 
     // sends given profile and threshold data to the server for validation and application
@@ -630,17 +820,18 @@ $(document).ready(function() {
 
         // Do data validation then send to db
         let profile = $('#profileSelect').val();
+        let success = true;
 
         if (typeof(profile) !== "string"){
             alert("No funny business.")
         }else{
-            let threshTempLOWER = $('#threshTempLOWER').val();
-            let threshTempUPPER = $('#threshTempUPPER').val();
-            let threshLightLOWER = $('#threshLightLOWER').val();
-            let threshLightUPPER = $('#threshLightUPPER').val();
-            let threshSoilLOWER = $('#threshSoilLOWER').val();
-            let threshSoilUPPER = $('#threshSoilUPPER').val();
-            let threshHumidity = $('#threshHumidity').val();
+            let threshTempLOWER = $('#threshTempLOWER').val().toString();
+            let threshTempUPPER = $('#threshTempUPPER').val().toString();
+            let threshLightLOWER = $('#threshLightLOWER').val().toString();
+            let threshLightUPPER = $('#threshLightUPPER').val().toString();
+            let threshSoilLOWER = $('#threshSoilLOWER').val().toString();
+            let threshSoilUPPER = $('#threshSoilUPPER').val().toString();
+            let threshHumidity = $('#threshHumidity').val().toString();
 
             switch (profile){
                 case "Normal":
@@ -657,6 +848,7 @@ $(document).ready(function() {
                         }
                     }).catch(function(error){
                             console.log(error);
+                            success = false;
                         });
                     break;
 
@@ -674,6 +866,7 @@ $(document).ready(function() {
                         }
                     }).catch(function(error){
                         console.log(error);
+                        success = false;
                     });
                     break;
 
@@ -691,6 +884,7 @@ $(document).ready(function() {
                         }
                     }).catch(function(error){
                         console.log(error);
+                        success = false;
                     });
                     break;
 
@@ -708,6 +902,7 @@ $(document).ready(function() {
                         }
                     }).catch(function(error){
                         console.log(error);
+                        success = false;
                     });
                     break;
 
@@ -725,6 +920,7 @@ $(document).ready(function() {
                         }
                     }).catch(function(error){
                         console.log(error);
+                        success = false;
                     });
                     break;
 
@@ -753,11 +949,24 @@ $(document).ready(function() {
 
                     }).catch(function(e){
                         console.log(e);
+                        success = false;
                     });
                     break;
 
 
             }
+
+            let successDiv = $('#settingsSuccess');
+            if (success){
+                successDiv.removeClass('alert-danger'); // just in case
+                successDiv.addClass('alert-success');
+                successDiv.text("Successfully uploaded new settings!");
+            } else {
+                successDiv.removeClass('alert-success'); // just in case
+                successDiv.addClass('alert-danger');
+                successDiv.text("Failed to upload new settings, check connection.");
+            }
+
         }
     });
 

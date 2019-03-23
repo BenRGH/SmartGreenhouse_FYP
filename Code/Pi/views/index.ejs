@@ -229,34 +229,32 @@
             <div class="col-6"><i tabindex="0" data-toggle="tooltip" data-placement="right" title="Upper bound for humidity, if it is exceeded then the fans are activated." class="profileInfo far fa-question-circle"></i></div>
           </div>
         </div>
+        <div class="separator"></div>
         <div class="row">
           <button type="submit" class="btn btn-outline-primary col-6" id="applyProfileBtn">APPLY</button>
           <button type="button" class="btn btn-outline-primary col-6 closeWindowBtn">CLOSE</button>
         </div>
-        <div class="row"></div>
+        <div class="row alert" id="settingsSuccess" role="alert"></div>
       </form>
     </div>
 
-    <main role="main">
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading"><%= title %></h1>
-          <p class="lead fullJustify">
-            Intelligence, Affordability & Customization. These three goals have driven the project onwards and upwards
-            to its current state as a fully autonomous personal greenhouse with this website functioning as a front-end
-            monitoring service.
-          </p>
-          <p class="lead fullJustify">
-            You can find the last three days of data below and more.
-          </p>
-        </div>
-      </section>
-
-      <div class="container" id="menu">
-        <div id="revealContext">Query</div>
-        <div id="revealSettings">Settings</div>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading"><%= title %></h1>
+        <p class="lead fullJustify">
+          Intelligence, Affordability & Customization. These three goals have driven the project onwards and upwards
+          to its current state as a fully autonomous personal greenhouse with this website functioning as a front-end
+          monitoring service.
+        </p>
+        <p class="lead fullJustify">
+          You can find the last three days of data below and more.
+        </p>
       </div>
+    </section>
 
+    <div class="row separator"></div>
+
+    <main role="main">
       <div id="loading" class="row justify-content-md-center bg-light box-shadow">
         Loading...
       </div>
@@ -273,10 +271,11 @@
               <p id="motd">Cold weather is just as bad to plants as it is to us warm blooded tetrapods.</p>
             </div>
           </div>
-          <div class="col-4" id="chartOptionsContainer">
-            <div class="row">
-              Display:
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class="col-4 alert alert-success" role="alert" id="chartOptionsContainer">
+            <div class="row justify-content-md-center">
+              <div class="col-4"><h3>Display:</h3></div>
+              <div class="col-2"></div>
+              <div class="btn-group btn-group-toggle col-4" data-toggle="buttons">
                 <label class="btn active btn-outline-primary" id="gridDisplayBtn">
                   <input type="radio" name="grid display" id="" autocomplete="off" checked> <i class="fas fa-th-large"></i>
                 </label>
@@ -285,9 +284,26 @@
                 </label>
               </div>
             </div>
+            <div class="row btn-group-vertical" id="revealMenu">
+              <div id="revealContext" class="btn btn-primary col-12">Query</div>
+              <div id="revealSettings" class="btn btn-primary col-12">Settings</div>
+            </div>
           </div>
         </div>
       </div>
+
+      <hr class="row separator">
+
+      <!--NEW CHARTS HERE!!!-->
+      <div class="fluid-container" id="pies">
+        <div class="row">
+          <div class="col-md-4">
+            <canvas id="lightPie"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <hr class="row separator">
 
       <div class="fluid-container" id="charts">
         <div class="statsContainer row">
@@ -311,6 +327,8 @@
 
       <!--doesn't work yet-->
       <div id="live"></div>
+
+      <hr class="row separator">
 
       <div id="gallery">
         <!--Rolling images here from db-->

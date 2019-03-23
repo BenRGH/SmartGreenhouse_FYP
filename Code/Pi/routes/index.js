@@ -354,6 +354,10 @@ router.post('/nf', function (req,res) {
     }
 });
 
+// CUSTOMIZED HERE!!!!
+// basic 1 second
+// moderate 3 seconds
+// excessive 5 seconds
 
 
 module.exports = router;

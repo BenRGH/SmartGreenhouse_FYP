@@ -34,10 +34,20 @@ a {
     margin-left:auto;
     margin-right:auto;
   }
+
+  .jumbotron{
+    max-width: 1280px;
+    margin-left:auto;
+    margin-right:auto;
+  }
 }
 
 @media (min-width: 1921px) {
   [role="main"], main {
+    max-width: 1921px;
+  }
+
+  .jumbotron{
     max-width: 1921px;
   }
 }
@@ -56,11 +66,14 @@ header .fixed-top{
   box-shadow: 0 0.25rem 1rem 0px rgba(0, 0, 0, 0.26)
 }
 
+.separator{
+  display:flex;
+  height: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 #contextContainer{
-  /*background-color: antiquewhite;*/
-  /*outline: crimson thin dashed;*/
-  /*min-height: 10em;*/
-  /*padding: 2em;*/
 }
 
 #profileCustomMenu{
@@ -106,36 +119,21 @@ header .fixed-top{
   padding: 0;
 }
 
+#revealMenu{
+  width: 100%;
+  margin-left: 0;
+  margin-top: 1em;
+  font-size: 2em; !important;
+}
+
 #revealContext{
-  height: 100%;
-
   width: 100%;
+  font-size: 1em;
 }
 
-#revealContext:hover{
-  background-color: #fcfcfc;
-  outline: #41858e 2px;
-  color: #41858e;
-  -webkit-box-shadow: inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  box-shadow:         inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  cursor: pointer;
-}
-
-#revealSettings{
-  height: 100%;
-
+#revealSettings {
   width: 100%;
-}
-
-#revealSettings:hover{
-  background-color: #fcfcfc;
-  outline: #41858e 2px;
-  color: #41858e;
-  -webkit-box-shadow: inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  box-shadow:         inset 0px 0px 30px -3px rgba(50, 50, 50, 0.75);
-  cursor: pointer;
+  font-size: 1em;
 }
 
 #contextWindow{
@@ -161,9 +159,9 @@ header .fixed-top{
   background-color: #fcfcfc;
   outline: #162446 5px solid;
   position: absolute;
-  padding: 2em;
+  padding: 4em;
   z-index: 5;
-  top: 50%;
+  top: 60%;
   left: 50%;
   -ms-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translate(-50%,-50%);
@@ -175,41 +173,36 @@ header .fixed-top{
   overflow-y: scroll;
 }
 
+#settingsWindow form{
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+#settingsSuccess{
+  width: 100%;
+  margin-top: 1em;
+  min-height: 4em;
+}
+
 .blur{
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
 
-#displayTypeContainer{
-  margin: 1em 0 1em 0;
-  font-size: 2em;
+#glanceMenu{
+  width: 100%;
+}
+
+#notificationsContainer{
+  width:100%;
+}
+
+#chartOptionsContainer{
+  padding-top: 1em;
 
 }
 
-.divAsBtn{
-  /*color: #fdfffb !important;*/
-  /*display: inline !important;*/
-}
-
-.divAsBtn:hover{
-  /*color: #2587f0 !important;*/
-}
-
-#notifications{
-  background-color: rgba(0, 176, 255, 0.08);
-}
-
-/*#gridDisplayBtn{*/
-  /*color: rgba(37, 135, 240, 0.9);*/
-  /*cursor: default;*/
-  /*display: inline;*/
-/*}*/
-
-/*#listDisplayBtn{*/
-  /*color: rgba(16,16,16,0.9);*/
-  /*cursor: default;*/
-  /*display: inline;*/
-/*}*/
+.divAsBtn{}
 
 #charts{
   /*padding-top: 3em;*/
@@ -220,10 +213,7 @@ header .fixed-top{
   display: block;
 }
 
-#dateRangeBtn{
-  /*height: 2em;*/
-  /*width: 4em;*/
-}
+#dateRangeBtn{}
 
 #rawDataTable{
   /*min-height: 200em;*/
@@ -233,7 +223,6 @@ header .fixed-top{
 .tabulator-header{
   height: 2em;
 }
-
 
 :root {
   --jumbotron-padding-y: 3rem;
@@ -245,13 +234,14 @@ header .fixed-top{
   margin-bottom: 0;
   background-color: #fcfcfc;
   color: #162446;
-  border-radius: 0;
+  border-radius: 5px;
 }
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: calc(var(--jumbotron-padding-y) * 2);
     padding-bottom: calc(var(--jumbotron-padding-y) * 2);
   }
+
 }
 
 .jumbotron p:last-child {
