@@ -25,6 +25,11 @@ app.use(bodyParser.json()); // Bodyparser as middleware
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  res.set('X-Clacks-Overhead', 'GNU Terry Pratchett');
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/howitworks', howitworksRouter);
 app.use('/more', moreRouter);

@@ -74,6 +74,36 @@ router.get('/wdata', async function(req,res){
     })
 });
 
+// GET settings values
+router.get('/settings', async function(req,res){
+    // Return vals from db
+    const client = new Pool({
+        user: 'pi',
+        host: 'localhost',
+        database: 'test',
+        password: process.env.PGPASSWORD,
+        port: 5432,
+    });
+
+    let getDataQuery = {
+        name: 'getSettings',
+        text: 'SELECT * FROM profile',
+    };
+
+    client.query(getDataQuery).then(resp => {
+        if (resp.rows.length < 1){
+            client.end();
+            return res.json({ success: false, msg: 'Database read error' });
+        }
+
+        client.end();
+        return res.json({ success: true, data: resp.rows })
+
+    }).catch((err)=>{
+        console.error(err);
+    })
+});
+
 let validateThresh = function(thresholds){
     // This takes the values (whatever they may be) from the client's post request and processes them,
     // A combination of validation and type conversion. (Args are just shorthand for threshold names.)
@@ -168,7 +198,9 @@ let validateThresh = function(thresholds){
 
 };
 
-let validateCustom = function(options){};
+let validateCustom = function(customProfile){
+
+};
 
 // Profile setting
 router.post('/normal', function (req,res) {
@@ -323,11 +355,5 @@ router.post('/nf', function (req,res) {
 });
 
 
-
-// GET live values
-router.get('/live', async function(req,res){
-    // Return live vals
-
-});
 
 module.exports = router;

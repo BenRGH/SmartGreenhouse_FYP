@@ -5,7 +5,8 @@
 body {
   /*padding: 40px;*/
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-
+  background-image: url("https://i.imgur.com/IinUhQD.jpg");
+  background-size:cover;
 }
 
 h1{
@@ -17,11 +18,28 @@ h2{
 }
 
 a {
-  color: #e06436;
+  color: #007bff;
 }
 
 [role="main"], main {
   padding-top: 4em; /* Space for fixed navbar */
+  background: white;
+  border-radius: 5px;
+  /*Site is full width by default until media selector below*/
+}
+
+@media (min-width: 1280px) {
+  [role="main"], main {
+    max-width: 1280px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+@media (min-width: 1921px) {
+  [role="main"], main {
+    max-width: 1921px;
+  }
 }
 
 header{
@@ -30,10 +48,12 @@ header{
 
 header .fixed-top{
   z-index: 4;
+  box-shadow: 0 0.25rem 1rem 0px rgba(0, 0, 0, 0.26)
 }
 
 #navbarHeader{
   padding-top: 3em;
+  box-shadow: 0 0.25rem 1rem 0px rgba(0, 0, 0, 0.26)
 }
 
 #contextContainer{
@@ -76,17 +96,19 @@ header .fixed-top{
 }
 
 #menu{
-  height: 4em;
   background-color: #162446;
   color: #fcfcfc;
   font-size: 2em;
   text-align: center;
   display:flex;
+  min-width: 100%;
+  margin: .6em 0 .6em 0;
+  padding: 0;
 }
 
 #revealContext{
-  padding: 1.2em 0 1em 0;
   height: 100%;
+
   width: 100%;
 }
 
@@ -101,8 +123,8 @@ header .fixed-top{
 }
 
 #revealSettings{
-  padding: 1.2em 0 1em 0;
   height: 100%;
+
   width: 100%;
 }
 
@@ -165,33 +187,32 @@ header .fixed-top{
 }
 
 .divAsBtn{
-  color: #e06436 !important;
-  display: inline !important;
+  /*color: #fdfffb !important;*/
+  /*display: inline !important;*/
 }
 
 .divAsBtn:hover{
-  cursor: pointer !important;
-  color: #41858e !important;
+  /*color: #2587f0 !important;*/
 }
 
 #notifications{
   background-color: rgba(0, 176, 255, 0.08);
 }
 
-#gridDisplayBtn{
-  color: #41858e;
-  cursor: default;
-  display: inline;
-}
+/*#gridDisplayBtn{*/
+  /*color: rgba(37, 135, 240, 0.9);*/
+  /*cursor: default;*/
+  /*display: inline;*/
+/*}*/
 
-#listDisplayBtn{
-  color: #41858e;
-  cursor: default;
-  display: inline;
-}
+/*#listDisplayBtn{*/
+  /*color: rgba(16,16,16,0.9);*/
+  /*cursor: default;*/
+  /*display: inline;*/
+/*}*/
 
 #charts{
-  padding-top: 3em;
+  /*padding-top: 3em;*/
   background-color: #fcfcfc;
 }
 
@@ -245,9 +266,13 @@ header .fixed-top{
   max-width: 40rem;
 }
 
+.fullJustify{
+  text-align: justify;
+}
+
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 2rem 0 2rem 0;
+  margin-top: 1em;
 }
 
 footer p {

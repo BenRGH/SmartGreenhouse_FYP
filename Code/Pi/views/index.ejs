@@ -11,8 +11,11 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4>This Project</h4>
-              <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor eros, efficitur at mi vel, consequat mollis ligula. Aenean blandit magna sed magna finibus hendrerit. Sed sollicitudin semper tincidunt. Donec consectetur mi scelerisque, pulvinar urna sit amet, eleifend lorem. Morbi gravida ex ipsum, a laoreet tortor scelerisque et.
+              <p class="text-muted fullJustify">
+                The aim of this website and its physical counterpart is to autonomously monitor and control a small
+                scale personal-sized greenhouse within which up to 4 plants can be effectively sustained and grown.
+                For more info on how this project was put together and its aims see the 'How It Works' page and for raw
+                data see the 'More Data' page.
               </p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
@@ -238,13 +241,18 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading"><%= title %></h1>
-          <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tortor eros, efficitur at mi vel, consequat mollis ligula. Aenean blandit magna sed magna finibus hendrerit. Sed sollicitudin semper tincidunt. Donec consectetur mi scelerisque, pulvinar urna sit amet, eleifend lorem. Morbi gravida ex ipsum, a laoreet tortor scelerisque et.
+          <p class="lead fullJustify">
+            Intelligence, Affordability & Customization. These three goals have driven the project onwards and upwards
+            to its current state as a fully autonomous personal greenhouse with this website functioning as a front-end
+            monitoring service.
+          </p>
+          <p class="lead fullJustify">
+            You can find the last three days of data below and more.
           </p>
         </div>
       </section>
 
-      <div class="fluid-container justify-content-md-center" id="menu">
+      <div class="container" id="menu">
         <div id="revealContext">Query</div>
         <div id="revealSettings">Settings</div>
       </div>
@@ -253,23 +261,30 @@
         Loading...
       </div>
 
-      <div class="row" id="displayTypeContainer">
-        <div class="col-4">
-          Display:
-          <div id="gridDisplayBtn">
-            <i class="fas fa-th-large"></i>
+      <div class="container" id="glanceMenu">
+        <div class="row">
+          <div class="col-8" id="notificationsContainer">
+            <div class="alert alert-danger" role="alert">
+              <h2>Alerts</h2>
+              <p id="defcon">It's going to be cold over the next few days, recommend reduced fanning profile!</p>
+            </div>
+            <div class="alert alert-info" role="alert">
+              <h2>Tip of The Day</h2>
+              <p id="motd">Cold weather is just as bad to plants as it is to us warm blooded tetrapods.</p>
+            </div>
           </div>
-          <div id="listDisplayBtn" class="divAsBtn">
-            <i class="fas fa-arrows-alt-h"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-8" id="notifications">
-            <h2>Notifications</h2>
-            <p>It's going to be cold over the next few days, recommend reduced fanning profile!</p>
+          <div class="col-4" id="chartOptionsContainer">
+            <div class="row">
+              Display:
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn active btn-outline-primary" id="gridDisplayBtn">
+                  <input type="radio" name="grid display" id="" autocomplete="off" checked> <i class="fas fa-th-large"></i>
+                </label>
+                <label class="btn btn-outline-primary" id="listDisplayBtn">
+                  <input type="radio" name="list display" id="" autocomplete="off" checked> <i class="fas fa-arrows-alt-h"></i>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -294,7 +309,15 @@
         </div>
       </div>
 
+      <!--doesn't work yet-->
       <div id="live"></div>
+
+      <div id="gallery">
+        <!--Rolling images here from db-->
+        <img src="" alt="test">
+      </div>
+
+
     </main>
 
   <% include bits/foot.ejs %>

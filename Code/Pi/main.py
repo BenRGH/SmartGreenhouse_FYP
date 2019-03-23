@@ -129,7 +129,7 @@ def lightOn(light):
             ser.write(b'0001')  # send light 2 on command (with extra 0's for padding)
         elif light == 2:
             ser.write(b'0000')  # send light 2 on
-            time.sleep(1)
+            time.sleep(3)
             ser.write(b'0001')  # send light 2 on
 
     return 1
@@ -146,7 +146,7 @@ def lightOff(light):
             ser.write(b'0003')  # send light 2 off command (with extra 0's for padding)
         elif light == 2:
             ser.write(b'0002')  # send light 2 off
-            time.sleep(1)
+            time.sleep(3)
             ser.write(b'0003')  # send light 2 off
 
 
@@ -167,7 +167,7 @@ def fanOn(fan):
             ser.write(b'0011')  # send fan 2 on command (with extra 0's for padding)
         elif fan == 2:
             ser.write(b'0010')  # send fan 2 on
-            time.sleep(1)
+            time.sleep(3)
             ser.write(b'0011')  # send fan 2 on
 
     return 1
@@ -184,7 +184,7 @@ def fanOff(fan):
             ser.write(b'0013')  # send fan 2 off command (with extra 0's for padding)
         elif fan == 2:
             ser.write(b'0012')  # send fan 2 off
-            time.sleep(1)
+            time.sleep(3)
             ser.write(b'0013')  # send fan 2 off
 
     return 1
@@ -209,6 +209,7 @@ def pumpOn(duration):
             ser.write(b'0022')  # send pump 3s command
     return 1
 
+
 def main():
 
     while 1:
@@ -217,7 +218,8 @@ def main():
 
         try:
             # Now we have the sensor values, we run them through the thresholds of automation,
-            # the limits are defined by the chosen profile
+            # the limits are defined by the chosen profile. Yes I am aware that 'try' statements shouldn't
+            # be used like this but since a missed update isn't critical I'm okay with it.
             profileData = getAllDB("SELECT * FROM profile")[-1]
 
             print(profileData)

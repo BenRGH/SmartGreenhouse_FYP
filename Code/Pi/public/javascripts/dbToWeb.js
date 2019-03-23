@@ -332,7 +332,6 @@ $(document).ready(function() {
         });
     }
 
-
     async function chartIt(startDate, endDate){
         try {
             // Get new data from db's
@@ -488,10 +487,6 @@ $(document).ready(function() {
         }
     }
 
-    async function getLive() {
-        // Do this
-    }
-
     let defaultStart = new Date(); // By default this is today
     defaultStart.setDate(defaultStart.getDate() - 3);  // 3 days before today
     let defaultEnd = new Date('2050-11-01T00:00:00.000Z'); // This'll probably be useless by 2050
@@ -507,37 +502,67 @@ $(document).ready(function() {
     $('#loading').hide();
     $('.statsContainer').show();
 
-    // try {
-    //     getLive()
-    // } catch (e) {
-    //     console.error(e);
-    // }
+    // Adds a MOTD to the notifications with tips etc.
+    let motd = function(){
+        // list many different messages here and at the end add to the html
 
+    };
+
+    // Asks the server if there is anything to be worried about
+    let defcon = function() {
+        // get request for warnings from server then return
+
+    };
+
+    // Deals with the notifications html element
+    let notifications = function(){
+        // call motd and defcon, insert into html
+
+    };
+    notifications();
+
+    // set the settings to the current in use according to db
+    function loadCurrentSettings() {
+        return new Promise(resolve => {
+            axios.get('/settings').then(resp => {
+                let settingsData = resp.data.data;
+                resolve(settingsData[settingsData.length - 1])
+            });
+        })
+    }
+    loadCurrentSettings().then(test => {
+        console.log('test', test); // to debug
+        // insert values from test into the page
+
+    });
+
+
+    // reveals the query window and blurs background
     $('#revealContext').click(function () {
-        // reveals the query window and blurs background
         $('#contextWindow').css("display", "block");
         $('main').addClass("blur");
     });
 
+    // reveals the settings window and blurs background
     $('#revealSettings').click(function () {
-        // reveals the settings window and blurs background
         $('#settingsWindow').css("display", "block");
         $('main').addClass("blur");
     });
 
-    // document.addEventListener('mouseup',function (e) {
-    //     // Unfortunately this doesn't work nicely with jquery
-    //     let contextWindow = document.getElementById('contextWindow');
-    //     let settingsWindow = document.getElementById('settingsWindow');
-    //
-    //     if(!(contextWindow.contains(e.target)||settingsWindow.contains(e.target))){
-    //         // sneaky way to hide the windows if there's a click outside of them
-    //         $('#contextWindow').css("display", "none");
-    //         $('#settingsWindow').css("display", "none");
-    //         $('main').removeClass("blur");
-    //     }
-    // });
+    document.addEventListener('mouseup',function (e) {
+        // Unfortunately this doesn't work nicely with jquery
+        let contextWindow = document.getElementById('contextWindow');
+        let settingsWindow = document.getElementById('settingsWindow');
 
+        if(!(contextWindow.contains(e.target)||settingsWindow.contains(e.target))){
+            // sneaky way to hide the windows if there's a click outside of them
+            $('#contextWindow').css("display", "none");
+            $('#settingsWindow').css("display", "none");
+            $('main').removeClass("blur");
+        }
+    });
+
+    // gets data for user-specified date range and applies to graphs
     $('#dateRangeBtn').click(function(){ // When 'Go' is clicked the data is saved here
         let rawStartDate = new Date($('#startDate').val());
         console.log("raw start date: " + rawStartDate.toString());
@@ -549,7 +574,6 @@ $(document).ready(function() {
         console.log(rawStartDate);
 
         let startDate = new Date(rawStartDate);
-
 
         let rawEndDate = new Date($('#endDate').val());
         console.log("raw end date: " + rawEndDate.toString());
@@ -574,6 +598,7 @@ $(document).ready(function() {
 
     });
 
+    // shows the customization menu if custom profile is selected
     $('#profileSelect').change(function() {
         let profileCustomMenu = $('#profileCustomMenu');
         switch ($('#profileSelect').val()) {
@@ -599,6 +624,7 @@ $(document).ready(function() {
         }
     });
 
+    // sends given profile and threshold data to the server for validation and application
     $('#applyProfileBtn').click(function(e){
         e.preventDefault(); // Because jquery is stupid
 
@@ -705,12 +731,14 @@ $(document).ready(function() {
                 case "Customized":
                     axios.post('/customized', {
                         // Server manages validation, if it ain't allowed it won't work
-                        light: $('#lightCtrl').val(),
-                        lightDelay: $('#lightTiming').val(),
-                        fan: $('#fanCtrl').val(),
-                        fanDelay: $('#fanTiming').val(),
-                        pumpAmount: $('#pumpAmount').val(),
-                        pumpDelay: $('#pumpTiming').val(),
+                        customProfile: {
+                            light: $('#lightCtrl').val(),
+                            lightDelay: $('#lightTiming').val(),
+                            fan: $('#fanCtrl').val(),
+                            fanDelay: $('#fanTiming').val(),
+                            pumpAmount: $('#pumpAmount').val(),
+                            pumpDelay: $('#pumpTiming').val(),
+                        },
 
                         thresholds: {
                             tempLOWER: threshTempLOWER,
@@ -733,8 +761,10 @@ $(document).ready(function() {
         }
     });
 
-    $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }); // Allows tooltips to be shown on hover
+    // Allows tooltips to be shown on hover
+    $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' });
 
+    // show the graphs in list mode on click
     $('#listDisplayBtn').click(function () {
         let listDisplayBtn = $('#listDisplayBtn');
         if(listDisplayBtn.has(".divAsBtn")){
@@ -745,6 +775,7 @@ $(document).ready(function() {
         }
     });
 
+    // show the graphs in grid mode on click
     $('#gridDisplayBtn').click(function () {
         let gridDisplayBtn = $('#gridDisplayBtn');
         if(gridDisplayBtn.has(".divAsBtn")){
@@ -755,8 +786,8 @@ $(document).ready(function() {
         }
     });
 
+    // hides settings/query windows
     $('.closeWindowBtn').click(function () {
-        // Change nothing and hide windows, same as event listener above
         $('#contextWindow').css("display", "none");
         $('#settingsWindow').css("display", "none");
         $('main').removeClass("blur");
