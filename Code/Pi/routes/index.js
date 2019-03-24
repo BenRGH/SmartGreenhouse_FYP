@@ -108,52 +108,6 @@ let validateThresh = function(thresholds){
     // This takes the values (whatever they may be) from the client's post request and processes them,
     // A combination of validation and type conversion. (Args are just shorthand for threshold names.)
 
-    const allowedVals = {
-        tempLOWER: {
-            "10&deg;C": true,
-            "8&deg;C": true,
-            "5&deg;C": true,
-            "3&deg;C": true,
-            "0&deg;C": true,
-        },
-        tempUPPER: {
-            "20&deg;C": true,
-            "23&deg;C": true,
-            "25&deg;C": true,
-            "28&deg;C": true,
-            "30&deg;C": true,
-        },
-        lightLOWER: {
-            "10%": true,
-            "15%": true,
-            "20%": true,
-        },
-        lightUPPER: {
-            "35%":true,
-            "40%":true,
-            "45%":true,
-            "50%":true,
-        },
-        soilLOWER: {
-            "50%":true,
-            "55%":true,
-            "60%":true,
-        },
-        soilUPPER: {
-            "60%": true,
-            "65%": true,
-            "70%": true,
-            "75%": true,
-        },
-        humidity: {
-            "85RH":true,
-            "88RH":true,
-            "90RH":true,
-            "93RH":true,
-            "95RH":true,
-        }
-    };
-
     let allowedVals_tL = ["10°C", "8°C", "5°C", "3°C", "0°C"];
     let allowedVals_tU = ["20°C", "23°C", "25°C", "28°C", "30°C"];
     let allowedVals_lL = ["10%", "15%", "20%"];
@@ -184,22 +138,70 @@ let validateThresh = function(thresholds){
         return returnVals;
     }
 
-    // for (let i in thresholds){
-    //     // Checks if the arg vals given are within allowedVals
-    //     if (thresholds.hasOwnProperty(i)) {
-    //         if (!allowedVals[i].hasOwnProperty(thresholds[i])) {
-    //             return [];
-    //         }
-    //     }else{
-    //         return [];
-    //     }
-    // }
-
 
 };
 
 let validateCustom = function(customProfile){
+    // Validates and converts the client-sent values for a custom profile,
+    // customProfile vals must be within the allowedvals array
 
+    // 2D array, pos as follows:
+    // light & fan
+    // lightdelay & fandelay
+    // pumpamount
+    // pumpdelay
+    let allowedVals = [
+        ['LEFT', 'RIGHT', 'BOTH'],
+        ['4h','8h','10h','12h','14h','18h','20h'],
+        ['BASIC', 'MODERATE', 'EXCESSIVE'],
+        ['1 TIMES A DAY', '2 TIMES A DAY', '3 TIMES A DAY'],
+    ];
+
+    console.log("customProfile", customProfile);
+
+    // Pump amount info
+    // basic 1 second
+    // moderate 3 seconds
+    // excessive 5 seconds
+
+    // Conversion if the provided vals are correct
+    if (!allowedVals[0].includes(customProfile.light) || !allowedVals[1].includes(customProfile.lightDelay) || !allowedVals[0].includes(customProfile.fan) || !allowedVals[1].includes(customProfile.fanDelay) || !allowedVals[2].includes(customProfile.pumpAmount) || !allowedVals[3].includes(customProfile.pumpDelay)){
+        // Bad val
+        return [];
+
+    } else {
+        let returnVals = [];
+
+        // Converting
+        let trueVals = {
+            'LEFT': 0,
+            'RIGHT': 1,
+            'BOTH': 2,
+            '4h': 4,
+            '8h': 8,
+            '10h': 10,
+            '12h': 12,
+            '14h': 14,
+            '18h': 18,
+            '20h': 20,
+            'BASIC': 0,
+            'MODERATE': 1,
+            'EXCESSIVE': 2,
+            '1 TIMES A DAY': 0,
+            '2 TIMES A DAY': 1,
+            '3 TIMES A DAY': 2
+        }
+
+        returnVals[0] = trueVals[customProfile.light];
+        returnVals[1] = trueVals[customProfile.lightDelay];
+        returnVals[2] = trueVals[customProfile.fan];
+        returnVals[3] = trueVals[customProfile.fanDelay];
+        returnVals[4] = trueVals[customProfile.pumpAmount];
+        returnVals[5] = trueVals[customProfile.pumpDelay];
+
+        console.log("profile validated vals:", returnVals);
+        return returnVals
+    }
 };
 
 // Profile setting
@@ -355,9 +357,39 @@ router.post('/nf', function (req,res) {
 });
 
 // CUSTOMIZED HERE!!!!
-// basic 1 second
-// moderate 3 seconds
-// excessive 5 seconds
+router.post('/customized', function(req,res){
+    // validation and conversion
+    let profile = validateCustom(req.body.customProfile);
+    let thresholds = validateThresh(req.body.thresholds);
+
+    console.log("profile:", profile);
+    console.log("thresholds:", thresholds);
+
+    let queryVals = profile.concat(thresholds); // add the two together for query
+
+    if (profile === [] || thresholds === []){
+        console.log("bad threshold input");
+    }else{
+        const client = new Pool({
+            user: 'pi',
+            host: 'localhost',
+            database: 'test',
+            password: process.env.PGPASSWORD,
+            port: 5432,
+        });
+
+        let query = {
+            text: 'insert into profile values(\'Customized\', $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)',
+            values: queryVals,
+        };
+
+        client.query(query, (err, res) => {
+            if (err) throw err;
+            console.log(res);
+            client.end()
+        })
+    }
+});
 
 
 module.exports = router;

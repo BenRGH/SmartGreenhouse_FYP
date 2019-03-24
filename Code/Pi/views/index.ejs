@@ -284,7 +284,7 @@
                 </label>
               </div>
             </div>
-            <div class="row btn-group-vertical" id="revealMenu">
+            <div class="row" id="revealMenu">
               <div id="revealContext" class="btn btn-primary col-12">Query</div>
               <div id="revealSettings" class="btn btn-primary col-12">Settings</div>
             </div>
@@ -299,6 +299,12 @@
         <div class="row">
           <div class="col-md-4">
             <canvas id="lightPie"></canvas>
+          </div>
+          <div class="col-md-4">
+            <canvas id=""></canvas>
+          </div>
+          <div class="col-md-4">
+            <canvas id=""></canvas>
           </div>
         </div>
       </div>
@@ -332,10 +338,16 @@
 
       <div id="gallery">
         <!--Rolling images here from db-->
-        <img src="" alt="test">
+        <img src="images/01.jpg" alt="test">
       </div>
 
+      <div class="container">
+        <button type="button" class="btn btn-primary" id="liveRevealBtn">LIVE FEED</button>
 
+        <div class="row" id="liveFeed">
+
+        </div>
+      </div>
     </main>
 
   <% include bits/foot.ejs %>

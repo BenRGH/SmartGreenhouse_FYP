@@ -664,13 +664,13 @@ $(document).ready(function() {
                     success = false;
             }
             switch (current['pumpamount']){
-                case 1:
+                case 0:
                     $('#pumpAmount').val("BASIC");
                     break;
-                case 3:
+                case 2:
                     $('#pumpAmount').val("MODERATE");
                     break;
-                case 5:
+                case 3:
                     $('#pumpAmount').val("EXCESSIVE");
                     break;
                 default:
@@ -678,19 +678,21 @@ $(document).ready(function() {
                     success = false;
             }
             switch (current['pumpdelay']){
-                case 1:
+                case 0:
                     $('#pumpTiming').val("1 TIMES A DAY");
                     break;
-                case 2:
+                case 1:
                     $('#pumpTiming').val("2 TIMES A DAY");
                     break;
-                case 3:
+                case 2:
                     $('#pumpTiming').val("3 TIMES A DAY");
                     break;
                 default:
                     console.log("Couldn't read pump timings from db");
                     success = false;
             }
+
+            $('#profileCustomMenu').show();
         }
 
 
@@ -1000,7 +1002,19 @@ $(document).ready(function() {
         $('#contextWindow').css("display", "none");
         $('#settingsWindow').css("display", "none");
         $('main').removeClass("blur");
+        $('.jumbotron').removeClass("blur");
     });
+
+    // Loads the live feed from the webcam, currently only works on lan
+    $('#liveRevealBtn').click(()=>{
+        $('#liveFeed').css("display", "block");
+        $('#liveFeed').html("<object data=http://192.168.0.58:3005 width=\"650\" height=\"490\">\n" +
+            "            <embed src=http://192.168.0.58:3005 width=\"640\" height=\"480\">\n" +
+            "            </embed>\n" +
+            "            Error: Embedded data could not be displayed.\n" +
+            "          </object>");
+        $('#liveRevealBtn').css("display", "none");
+    })
 });
 
 
