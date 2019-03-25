@@ -104,6 +104,18 @@ router.get('/settings', async function(req,res){
     })
 });
 
+// GET any alerts
+router.get('/alert', async (req, res)=>{
+    let alert = ""; // length less than 1 shows "no warnings"
+
+    // check weather predictions & current stats for badness
+    // then return them, otherwise return 1
+
+
+
+    return res.json({ success: true, msg: alert })
+});
+
 let validateThresh = function(thresholds){
     // This takes the values (whatever they may be) from the client's post request and processes them,
     // A combination of validation and type conversion. (Args are just shorthand for threshold names.)

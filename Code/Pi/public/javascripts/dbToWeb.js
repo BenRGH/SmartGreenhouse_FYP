@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     // Pie/Doughnut contexts
     const lightPieCtx = document.getElementById("lightPie").getContext('2d');
+    const fanPieCtx = document.getElementById("fanPie").getContext('2d');
 
     // Chart instances
     let tempChart = new Chart(tempctx, {
@@ -177,11 +178,11 @@ $(document).ready(function() {
         let offTime = 24 - onTime;
         let lightPieData = {
             datasets: [{
-                data:[20, 4],
+                data:[onTime, offTime],
                 backgroundColor: [
                     '#54ac2f',
                     '#000027',
-                ],
+                ]
             }],
 
             labels: [
@@ -189,7 +190,6 @@ $(document).ready(function() {
                 'Light is off'
             ],
         };
-        console.log(lightPieData);
 
         lightPieChart = new Chart(lightPieCtx, {
             type: 'doughnut',
@@ -197,13 +197,43 @@ $(document).ready(function() {
             options:{
                 title: {
                     display: true,
-                    text: 'Illumination time'
+                    text: 'Illumination Time (hours)'
                 },
                 responsive: true,
             }
         });
     });
+    let fanPieChart;
+    loadCurrentSettings().then((current)=>{
+        let onTime = parseInt(current['fandelay']);
+        let offTime = 24 - onTime;
+        let fanPieData = {
+            datasets: [{
+                data:[onTime, offTime],
+                backgroundColor: [
+                    '#008cac',
+                    '#f25727',
+                ]
+            }],
 
+            labels: [
+                'Fan is on',
+                'Fan is off'
+            ],
+        };
+
+        fanPieChart = new Chart(fanPieCtx, {
+            type: 'doughnut',
+            data: fanPieData,
+            options:{
+                title: {
+                    display: true,
+                    text: 'Fan Cooling Time (hours)'
+                },
+                responsive: true,
+            }
+        });
+    });
 
     function remakeCharts(){
         // Clear old chart instances
@@ -542,19 +572,51 @@ $(document).ready(function() {
     // Adds a MOTD to the notifications with tips etc.
     let motd = function(){
         // list many different messages here and at the end add to the html
+        let min = 0, max = 10;
+        let random = Math.floor(Math.random() * (+max - +min)) + +min;
 
+        let motds = [
+            "Cold weather is just as bad to plants as it is to us warm blooded tetrapods.",
+            "Remember to check the health of your plants at least once a week.",
+            "Having the correct amount of light is necessary for proper, full plant growth.",
+            "We human beings use more than 2,000 different types of plants to create various delicious food items in our meals.",
+            "In order to help plants to grow, fertilisers are usually added to the soil or sprayed on them. Manure, which is actually animal waste is a fertiliser too.",
+            "There are more than 300,000 plant species identified till date and the list is constantly expanding.",
+            "Plants convert carbon dioxide, water and minerals into food when they use energy from sunlight and this process is known as photosynthesis.",
+            "Bananas contain a natural chemical that makes people feel happy.",
+            "Around 70,000 plant species are being utilized all over the world for medicines.",
+            "Water travels in the upward direction from the roots to its stem and then into the plant leaves.",
+            "Approximately four-fifths of ALL forests are gone thanks to human intervention — just think of how many plant species may have been lost in that process."
+        ];
+
+        return motds[random];
     };
 
     // Asks the server if there is anything to be worried about
-    let defcon = function() {
+    function defcon() {
         // get request for warnings from server then return
-
-    };
+        return new Promise(resolve =>{
+            axios.get('/alert', {}).then(resp=>{
+                resolve(resp);
+            });
+        });
+    }
 
     // Deals with the notifications html element
-    let notifications = function(){
+    let notifications = async function(){
         // call motd and defcon, insert into html
+        $('#motd').text(motd());
 
+        defcon().then(alert =>{
+            console.log("alert:", alert.data.msg);
+
+            if (alert.data.msg.length < 1){
+                console.log("Couldn't get alert from server");
+                $('#defcon').text("No warnings/alerts at the moment");
+            } else {
+                $('#defcon').text(alert.data.msg);
+            }
+        });
     };
     notifications();
 
@@ -1008,8 +1070,8 @@ $(document).ready(function() {
     // Loads the live feed from the webcam, currently only works on lan
     $('#liveRevealBtn').click(()=>{
         $('#liveFeed').css("display", "block");
-        $('#liveFeed').html("<object data=http://192.168.0.58:3005 width=\"650\" height=\"490\">\n" +
-            "            <embed src=http://192.168.0.58:3005 width=\"640\" height=\"480\">\n" +
+        $('#liveFeed').html("<object id=\"liveFeedObj\" data=http://hiddenbanks.ddns.net:3005 width=\"650\" height=\"490\">\n" +
+            "            <embed src=http://hiddenbanks.ddns.net:3005 width=\"640\" height=\"480\">\n" +
             "            </embed>\n" +
             "            Error: Embedded data could not be displayed.\n" +
             "          </object>");

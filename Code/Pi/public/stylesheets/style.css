@@ -273,6 +273,11 @@ header .fixed-top{
   display: none;
 }
 
+#liveFeedObj{
+  width: 100%;
+  height: 550px;
+}
+
 .fullJustify{
   text-align: justify;
 }
