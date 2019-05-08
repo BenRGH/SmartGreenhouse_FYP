@@ -25,7 +25,6 @@ bool light1on = false;
 bool light2on = false;
 bool fan1on = false;
 bool fan2on = false;
-bool pumpOn = false;
 
 
 void setup() {
@@ -143,13 +142,27 @@ void loop() {
         break;
       case 20:
         // pump on for 1s
-        // rewrite below for this to work!!!
+        motor(3, FORWARD, 255);
+        Serial.println("pump on 1s");
+        delay(1000)
+        motor(3, RELEASE, 0);
+        
         break;
       case 21:
         // pump on for 2s
+        motor(3, FORWARD, 255);
+        Serial.println("pump on 2s");
+        delay(2000)
+        motor(3, RELEASE, 0);
+        
         break;
       case 22:
         // pump on for 3s
+        motor(3, FORWARD, 255);
+        Serial.println("pump on 3s");
+        delay(3000)
+        motor(3, RELEASE, 0);
+        
         break;
       default:
         //ask again?
@@ -255,4 +268,3 @@ void shiftWrite(int output, int high_low)
   delayMicroseconds(5); // For safety, not really needed.
   digitalWrite(MOTORLATCH, LOW); 
 } 
-
