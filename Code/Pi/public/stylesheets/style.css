@@ -5,7 +5,6 @@
 body {
   /*padding: 40px;*/
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("https://i.imgur.com/IinUhQD.jpg");
   background-size:cover;
 }
 
@@ -245,6 +244,7 @@ header .fixed-top{
   color: #000000;
   font-size: 2em;
   border-radius: 5px;
+    box-shadow: 0px 0px 14px 10px rgba(50, 50, 50, 0.36);
 }
 @media (min-width: 768px) {
   .jumbotron {

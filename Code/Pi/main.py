@@ -313,7 +313,7 @@ def main():
 
 
 # to daemonize:
-# pm2 start main.py --watch
+# PGPASSWORD="" pm2 start main.py --watch
 
 if __name__ == "__main__":
     main()
