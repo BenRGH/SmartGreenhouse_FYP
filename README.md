@@ -1,3 +1,5 @@
 # SmartGreenhouse_FYP
-# UP780065
-Code repo for my smart greenhouse final year project
+
+Code repo for my smart greenhouse undergrad project
+
+![what it is](overview_physical.jpg)
